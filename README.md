@@ -4,17 +4,16 @@
 ## 툴의 종류
 2차때부터 툴은 여러가지 툴을 사용해도 괜찮다. 
 
-```java
+
 	int c,d // 이 방법은 선호되지 않는다 
 	// 같은 타입의 변수가 나열 될 때는 배열을 사용
 
-```
 ## keypoint 
 		//local variable(함수안에 있는 변수 : main() {  안에 있는 변수 }
 		// 반드시 초기화가 필요하다.
         //지역변수는 선언과 동시에 초기화를 하고 사용하는 습관을 들이자.
 
-//라인주석
+//라인주석   
 /*
  * 블럭주석 : 해석되지 않아요
  * /
@@ -43,9 +42,10 @@ Variable : 변수
 	}
 ```
 변수가 선언되는 위치(scope : 유효범위)
-1.instnance variable :객체변수 >> class Car { int number =2000;}
-2. local variable      : 지역변수 >> class Car{ public void run() { int speed =0;   }}
-3. 함수안에 제어블럭 (if, for)안에 있는 변수 >> class Car{ public void run() { int i =0....} }
+1. instnance variable :객체변수 >> class Car { int number =2000;}   
+2. local variable      : 지역변수 >> class Car{ public void run() { int speed =0;   }}   
+3. 함수안에 제어블럭 (if, for)안에 있는 변수 >> class Car{ public void run() { int i =0....} }   
 4. static variable    : 공유 자원 (객체간)
 
 ![러버덕](https://camo.githubusercontent.com/a123b2c6011765dd07b9b58e40599a0ba15336a9ddd082e85f704781c97baee2/687474703a2f2f6366696c65362e75662e746973746f72792e636f6d2f696d6167652f32343236453634363534334339423435333243374230)
+

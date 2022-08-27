@@ -25,10 +25,8 @@ import java.util.Scanner;
             }
         } while (input_number != answer);
         System.out.printf("정답입니다. 총 시도횟수는 %d회 입니다.\n", repeat_count);
- 
-    }
-    }
-    }
+
+
  */
 public class Random_Example2 {
 	public static void main(String[] args) {

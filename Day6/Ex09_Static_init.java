@@ -13,7 +13,7 @@ class InitTest{
 		//static int cv=10, static int cv2이 메모리에 올라간 직후 
 		cv=1111;
 		cv2=cv+2222;//조작된 값의 표현이 가능하다.
-		
+		1
 	}
 	
 	{

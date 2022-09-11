@@ -28,7 +28,7 @@ public class DynamicBeat extends JFrame { //JFrame : GUI 사용하기 위해서 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		
-		introBackground = new ImageIcon(Main.class.getResource("../images/introBackground(Title2).jpg")).getImage();
+		introBackground = new ImageIcon(Main.class.getResource("../images/introBackground(Title).jpg")).getImage();
 		// main class의 위치를 기반으로 해서 저 파일을 얻어온 다음, 그것의 이미지 인스턴스를 introBackground 변수에 넣어서 초기화.
 	}
 	

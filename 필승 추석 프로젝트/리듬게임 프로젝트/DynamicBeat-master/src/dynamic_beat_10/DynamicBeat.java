@@ -48,7 +48,7 @@ public class DynamicBeat extends JFrame {
 	private Image noteRouteImage = new ImageIcon(Main.class.getResource("../images/noteRoute.png")).getImage();
 	private Image noteRouteLineImage = new ImageIcon(Main.class.getResource("../images/noteRouteLine.png")).getImage();
 	private Image noteBasicImage = new ImageIcon(Main.class.getResource("../images/noteBasic.png")).getImage();
-	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground(Title2).jpg"))
+	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground(Title).jpg"))
 			.getImage();
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));
 

@@ -38,7 +38,7 @@ public class DynamicBeat extends JFrame {
 	// selectedImage : 현재 선택된 곡의 이미지 - 우선 이미지 하나를 임의로 지정해줬음. 
 	private Image selectedImage = new ImageIcon(Main.class.getResource("../images/Mighty Love Start Image.png"))
 			.getImage();
-	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground(Title2).jpg"))
+	private Image background = new ImageIcon(Main.class.getResource("../images/introBackground(Title).jpg"))
 			.getImage();
 	private JLabel menuBar = new JLabel(new ImageIcon(Main.class.getResource("../images/menuBar.png")));
 

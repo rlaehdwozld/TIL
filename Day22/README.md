@@ -1,4 +1,6 @@
-RANT "CONNECT" TO "KOSA" WITH ADMIN OPTION;  
+# 2022.09.27 월요일 못먹어도 고!
+
+GRANT "CONNECT" TO "KOSA" WITH ADMIN OPTION;  
 GRANT "RESOURCE" TO "KOSA" WITH ADMIN OPTION;  
 ALTER USER "KOSA" DEFAULT ROLE "CONNECT","RESOURCE";
 
@@ -713,10 +715,10 @@ select sysdate from dual;
 alter session set nls_date_format='YYYY-MM-DD HH24:MI:SS';
 
 select  
-last_name || first_name as fullname,  
+last*name || first_name as fullname,  
 to_char(hire_date,'YYYY-MM-DD') as "입사일",  
-to_char(salary _ 12) as "연봉",  
-to_char((salary _ 12) \* 1.1, '999,999,999') as "인상급여"  
+to_char(salary * 12) as "연봉",  
+to*char((salary * 12) \* 1.1, '999,999,999') as "인상급여"  
 from employees  
 where to_char(hire_date, 'YYYY') >= '2005'  
 order by 연봉 desc;  
@@ -736,10 +738,10 @@ order by 연봉 desc;
 --함수끝
 
 select  
-last_name || first_name as fullname,  
+last*name || first_name as fullname,  
 to_char(hire_date,'YYYY-MM-DD') as "입사일",  
-to_char(salary _ 12) as "연봉",  
-to_char((salary _ 12) \* 1.1, '999,999,999') as "인상급여"  
+to_char(salary * 12) as "연봉",  
+to*char((salary * 12) \* 1.1, '999,999,999') as "인상급여"  
 from employees  
 where to_char(hire_date, 'YYYY') >= '2005'  
 order by 연봉 desc;  

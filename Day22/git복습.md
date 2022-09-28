@@ -18,8 +18,11 @@ echo "주황" >> orange
 git init
 ```
 
-    결과
+결과
+
+```bash
     Initialized empty Git repository in /Users/cs.kim/Workspace/github.com/subicura/sample/.git/
+```
 
 - sample 디렉토리에 Git 저장소 생성
 - 디렉토리 하위에 .git 디렉토리 생성 - Git과 관련된 정보 저장

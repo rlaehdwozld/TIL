@@ -7,41 +7,41 @@
 JDBC
 
 1. java 언어 (APP) 를 통해서 Oracle (소프트 웨어) 연결해서 CRUD작업
-   2.java App : oracle, my-sql, ms-sql 등등 모든 데이터베이스에 연결 할 수 있고 (CRUD)
-   2.1 각각의 제품에 맞는 드라이버를 갖고 있어야 한다. 그 드라이버는 오라클, 마이에스큐엘을 만든 vendor가 제공한다.
-   CASE1 : 삼성 노트북>> HP프린터 연결>> HP프린터 사이트에서 드라이버 다운 >> 삼성 설치
-   CASE2 : HP 프린터 제조 회사는.... 삼성 , LG회사마다 적용할 수 있는 드라이버를 별도로 제작
-   각언어에 맞는 드라이버를 다운로드 해서 제품에 맞게 설치 ... 접속...
-   oracle (C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib)
+2. java App : oracle, my-sql, ms-sql 등등 모든 데이터베이스에 연결 할 수 있고 (CRUD)  
+   2.1 각각의 제품에 맞는 드라이버를 갖고 있어야 한다. 그 드라이버는 오라클, 마이에스큐엘을 만든 vendor가 제공한다.  
+   CASE1 : 삼성 노트북>> HP프린터 연결>> HP프린터 사이트에서 드라이버 다운 >> 삼성 설치  
+   CASE2 : HP 프린터 제조 회사는.... 삼성 , LG회사마다 적용할 수 있는 드라이버를 별도로 제작  
+   각언어에 맞는 드라이버를 다운로드 해서 제품에 맞게 설치 ... 접속...  
+   oracle (C:\oraclexe\app\oracle\product\11.2.0\server\jdbc\lib)  
    mysql(https://dev.mysql.com/downloads/connector/j/)
 
 강사 PC : C:\KOSA_IT\Database\JDBC\ConnectionUtils\Oracle>> ojdbc6.jar
 
-3. 드라이버를 참조 ( 현재 프로젝트에서 사용 가능 하도록)
-   jar파일 추가
-   3.1 드라이버 사용 준비 완요>> 메모리에 load사용...
+3. 드라이버를 참조 ( 현재 프로젝트에서 사용 가능 하도록)  
+   jar파일 추가  
+   3.1 드라이버 사용 준비 완요>> 메모리에 load사용...  
    3.2 Class.forName("oracle.jdbc.OracleDriver");
 
-4. JAVA CODE(CRUD) >> JDBC API제공 받는다.
-   4.1 import java.sql.\*>> interface, class 제공
-   4.2 개발자는 interface를 통해서 표준화된 DB작업 수행 가능
-   POINT) 왜 인터페이스를 줬을까???? 왜 클래스 안만들고 인터페이스 형태로 제공할까?
-   어떨때는 오라클, mysql ,.... 여러종류를 작업하든 똑같은 코드를 적용하고 싶다.
-   //OracleConnection conn>> connection 구현
-   //MysqlConnection conn >> Connection 구현
-   //다형성 Connection 부모 타입 : 유연한 프로그램을 작성할 수 있다.
-   //메모리에 로딩된 드라이버를 통해서 연결을 시도하는 것이다. 연결이 성공되면 conn이라는 변수가
-   다형성을 구현하기 위해서 ( 인터페이스 활용)
-   import java.sql.Connection
-   import.java.sql.ResutlSet
+4. JAVA CODE(CRUD) >> JDBC API제공 받는다.  
+   4.1 import java.sql.\*>> interface, class 제공  
+   4.2 개발자는 interface를 통해서 표준화된 DB작업 수행 가능  
+   POINT) 왜 인터페이스를 줬을까???? 왜 클래스 안만들고 인터페이스 형태로 제공할까?  
+   어떨때는 오라클, mysql ,.... 여러종류를 작업하든 똑같은 코드를 적용하고 싶다.  
+   //OracleConnection conn>> connection 구현  
+   //MysqlConnection conn >> Connection 구현  
+   //다형성 Connection 부모 타입 : 유연한 프로그램을 작성할 수 있다.  
+   //메모리에 로딩된 드라이버를 통해서 연결을 시도하는 것이다. 연결이 성공되면 conn이라는 변수가  
+   다형성을 구현하기 위해서 ( 인터페이스 활용)  
+   import java.sql.Connection  
+   import.java.sql.ResutlSet  
    import.java.sql.Statement 등등의 인터페이스를 활용해서 프로그램을 짤 예정이다.
 
-5. 작업순서
-   5.1 DB연결 -> 명령생성-> 명령실행-> 처리-> 자원해제
-   5.2 명령 : DDL( create, alter, drop)
-   CRUD(insert, select, update, delete)
-   실행 : 쿼리문을 DB서버에게 전달
-   처리 : 결과를 받아서 화면 출력, 또는 다른 프로그램에 전달 등등
+5. 작업순서  
+   5.1 DB연결 -> 명령생성-> 명령실행-> 처리-> 자원해제  
+   5.2 명령 : DDL( create, alter, drop)  
+   CRUD(insert, select, update, delete)  
+   실행 : 쿼리문을 DB서버에게 전달  
+   처리 : 결과를 받아서 화면 출력, 또는 다른 프로그램에 전달 등등  
    자원해제 : 연결 끊기 ( io처럼 직접적으로 해제 해줘야 한다)
 
 ```java
@@ -82,17 +82,17 @@ public class Ex01_Oracle_connection {
 
 ### DML_DELETE
 
-DML (insert, update, delete)
+DML (insert, update, delete)  
 JDBC API통해서 작업
 
 1. 결과 집합이 없다 (resultSet 필요 없다)
 2. 반영결과 (return 행의 수) >> update 5건 >> return 5
 
-java코드
-update emp set sal=0 > 실행 > update 14건 >> return 14
+java코드  
+update emp set sal=0 > 실행 > update 14건 >> return 14  
 update emp set sal=100 where empno=4444> update 0건 >> return 0
 
-결과를 가지고 java코드로 로직처리
+결과를 가지고 java코드로 로직처리  
 KET POINT
 
 1. Oracle DML(developer, Cmd(sqlplus), tool) 하면 commit or rollback강제
@@ -100,28 +100,28 @@ KET POINT
 3. JDBC API 통해서 delete from emp >> 실행 >> 자동 commit> 실반영
 4. 필요에 따라 commit(), rollback 처리 코드...
 
-begin
-A계좌 인출 (update ...
-....
-B계좌 입급 (update ....
+begin  
+A계좌 인출 (update ...  
+....  
+B계좌 입급 (update ....  
 end
 
-> > 하나의 논리적인 단위 업무(transaction)
-> > 전체 commit 이거나 전체 rollback
+> > 하나의 논리적인 단위 업무(transaction)  
+> > 전체 commit 이거나 전체 rollback  
 > > 둘다 성공 이거나 둘다 실패
 
-> > 업무 처리 >> JDBC >> autocomit 옵션을 >> false전환
+> > 업무 처리 >> JDBC >> autocomit 옵션을 >> false전환  
 > > 반드시 java
 
---KOSA계정에서
-create table dmlemp
-as
+--KOSA계정에서  
+create table dmlemp  
+as  
 select \* from emp;
 
---제약정보는 복사가 안돼요
+--제약정보는 복사가 안돼요  
 select \* from dmlemp;
 
-alter table dmlemp
+alter table dmlemp  
 add constraint pk_dmlemp_empno primary key (empno);
 
 select \* from user_constraints where table_name='DMLEMP';
@@ -643,43 +643,43 @@ public class SingletonHelper {
 
 PreparedStatement (준비된 Statement )
 
-(1) 설명
+(1) 설명  
 미리 SQL문이 셋팅된 Statement 가 DB가 전송되어져서 컴파일되어지고, SQL문의 ?만 나중에 추가 셋팅해서 실행
 이 되어지는 준비된 Statement
 
-ex) select _ from emp where empno=7788->구문분석-> 실행계획-> 메모리....
+ex) select _ from emp where empno=7788->구문분석-> 실행계획-> 메모리....  
 select _ from emp where EMPNO=7788->구문분석-> 실행계획-> 메모리....(비효율 똑같은 건데 실행과정은 동일하기 때문)
 
-(2) 장점
-<1> Statement 에 비해서 반복적인 SQL문을 사용할 경우에 더 빠르다. ( 특히, 검색문 )
-<2> DB컬럼타입과 상관없이 ?하나로 표시하면 되므로 개발자가 헷깔리지 않고 쉽다. ( 특히, INSERT문 )
+(2) 장점  
+<1> Statement 에 비해서 반복적인 SQL문을 사용할 경우에 더 빠르다. ( 특히, 검색문 )  
+<2> DB컬럼타입과 상관없이 ?하나로 표시하면 되므로 개발자가 헷깔리지 않고 쉽다. ( 특히, INSERT문 )  
 (이유: ?를 제외한 SQL문이 DB에서 미리 컴파일되어져서 대기)
 
-(3) 단점
-SQL문마다 PreparedStatement 객체를 각각 생성해야 하므로 재사용불가
+(3) 단점  
+SQL문마다 PreparedStatement 객체를 각각 생성해야 하므로 재사용불가  
 (but, Statement 객체는 SQL문이 달라지더라도 한 개만 생성해서 재사용이 가능하다. )
 
-(4) 특징
-<1> Statement stmt = con.createStatement(); //생성 stmt.execute(sql);//실행
+(4) 특징  
+<1> Statement stmt = con.createStatement(); //생성 stmt.execute(sql);//실행  
 <2> PreparedStatement pstmt = con.prepareStatement(sql); //생성 pstmt.execute(); //실행
 
-(5) 주의
-DB 객체들(table, ..)의 뼈대( 테이블명 or 컬럼명 or 시퀀스명 등의 객체나 속성명)은
-?로 표시할 수 없다.
-즉, data 자리에만 ?로 표시할 수 있다.
+(5) 주의  
+DB 객체들(table, ..)의 뼈대( 테이블명 or 컬럼명 or 시퀀스명 등의 객체나 속성명)은  
+?로 표시할 수 없다.  
+즉, data 자리에만 ?로 표시할 수 있다.  
 cf) 그래서, DDL문에서는 PreparedStatement를 사용하지 않는다.
 
-장점 : 보안 ( 전체 문장을 DB에 보내지 않아요) 나누어서... SQL문 (파라매터가 빠져있는) 보내서 컴파일 그 다음에는 파라메터만 보낸다. 행안부 보안문서 권장사항이다(보안적 이슈\_
+장점 : 보안 ( 전체 문장을 DB에 보내지 않아요) 나누어서... SQL문 (파라매터가 빠져있는) 보내서 컴파일 그 다음에는 파라메터만 보낸다. 행안부 보안문서 권장사항이다(보안적 이슈\  
 미리 쿼리문 컴파일( 쿼리문은 DB 서버에서 보관) >> 그 이후 전송 >> parameter값만 >> 네트워크 트래픽 감소(성능적 이슈)
 
-단점 : 쿼리문이 바뀌면 다시 컴파일... 4. CallableStatement ( 호출할 수 있는 Statement )
-(1) 설명
+단점 : 쿼리문이 바뀌면 다시 컴파일... 4. CallableStatement ( 호출할 수 있는 Statement )  
+(1) 설명  
 DataBase 에 미리 컴파일되어 있는 Stored Procedure 를
 호출하기 위한 Statement
 
-(2) 생성 / 호출
-String sql = "{call incre(?,?)}";
-CallableStatement cstmt = con.prepareCall(sql);
+(2) 생성 / 호출  
+String sql = "{call incre(?,?)}";  
+CallableStatement cstmt = con.prepareCall(sql);  
 (ex: day3/JDBC12.java )
 
 5. 동적 커서 이동
@@ -806,13 +806,13 @@ System.out.println(e.getMessage());
 
 ### 조별과제
 
-sdept 테이블에 대해서
-전체조회
-조건조회
-삽입
-삭제
-수정
-을 작업 하시면 됩니다
+sdept 테이블에 대해서  
+전체조회  
+조건조회  
+삽입  
+삭제  
+수정  
+을 작업 하시면 됩니다  
 PreparedStatement
 
 ```java

@@ -106,12 +106,12 @@ A계좌 인출 (update ...
 B계좌 입급 (update ....  
 end
 
-> > 하나의 논리적인 단위 업무(transaction)  
-> > 전체 commit 이거나 전체 rollback  
-> > 둘다 성공 이거나 둘다 실패
+하나의 논리적인 단위 업무(transaction)  
+ 전체 commit 이거나 전체 rollback  
+ 둘다 성공 이거나 둘다 실패
 
-> > 업무 처리 >> JDBC >> autocomit 옵션을 >> false전환  
-> > 반드시 java
+업무 처리 >> JDBC >> autocomit 옵션을 >> false전환  
+ 반드시 java
 
 --KOSA계정에서  
 create table dmlemp  

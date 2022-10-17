@@ -1,0 +1,39 @@
+
+<html>
+    <head>
+        <style>
+            html{border:5px solid red;padding:30px;}
+            body{border:5px solid green;padding:30px;}
+            fieldset{border:5px solid blue;padding:30px;}
+            input{border:5px solid black;padding:30px;}
+        </style>
+    </head>
+    <body>
+        <fieldset>
+            <legend>event propagation</legend>
+            <input type="button" id="target" value="target">          
+        </fieldset>
+</body>
+	<script type="text/javascript">
+		/* 
+		이벤트에서 element.addEventListener(event, function, useCapture);
+		useCapture >> default false (bubbling )
+		Capture >> true ..
+		*/
+		function handler(event){
+			let phases = ['capturing','target','bubbling'];
+			//배열 [0][1][2]
+			console.log("event.target.nodeName : " + event.target.nodeName);
+			console.log("this.nodeName : " + this.nodeName);
+			console.log("phases[event.eventPhase-1] : " + phases[event.eventPhase-1]);
+			console.log("event.eventPhase : " + event.eventPhase);
+		}
+		
+		document.getElementById('target').addEventListener('click',handler,false);
+		document.querySelector('fieldset').addEventListener('click',handler,false);
+		document.querySelector('body').addEventListener('click',handler,false);
+		document.querySelector('html').addEventListener('click',handler,false);
+	</script>
+</html>
+
+

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+   <script type="text/javascript">
+      function eventProductor(frm){
+         console.log(frm);
+         console.log(frm.productor.value);//option 태그의 value 속성값
+         console.log(frm.productor.text); //undefined 고민 고민
+         
+         console.log("index: " + frm.productor.selectedIndex); //속성
+         //select > [option][option][option][option][option]
+         //            0      1       2       3       4
+         console.log(frm.productor.options[0].value);
+         console.log(frm.productor.options[0].text);
+         
+         let index = frm.productor.selectedIndex;//선택되어진
+         let text = frm.productor.options[index].text;
+         let value = frm.productor.options[index].value;
+         
+         if(index == 0){
+            frm.valProductor.value = "";
+            frm.txtProductor.value = "";
+         }else{
+            frm.valProductor.value = value;
+            frm.txtProductor.value = text;
+         }
+         
+      }
+   </script>
+</head>
+<body>
+   <br>
+   <form name="frmdata">
+      <select style="width: 200px" name="productor" onchange="eventProductor(this.form)">
+         <option value="A000" selected>제조사</option>
+         <!-- select[0]  -->
+         <option value="A001">삼성전자</option>
+         <option value="A002">LG전자</option>
+         <option value="A003">Apple</option>
+         <option value="A004">Dell</option>
+      </select> 
+         <input type="text" name="valProductor" size="10"> 
+         <input type="text" name="txtProductor" size="10"> <br>
+   
+   </form>
+​
+</body>
+</html>

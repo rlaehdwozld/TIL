@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	/*  
+	https://www.w3schools.com/jsref/dom_obj_event.asp
+	>>JAVA
+	try{
+		 0/0 >> 예외가 발생 ...예외에 해당하는 객체가 자동 생성 div ..객체 자동 생성 (정보가 담겨요)
+		 생성된 예외 객체의 주소를 e변수가 받는다 
+	}catch(Exception e) 
+	
+	문제가 발생하면 자동 객체 생성 .... (문제에 정보가 담긴다 ) >> 그 객체를 가지고 >>......
+	
+	
+	javascript >> 사건이 발생 (click , mouseover) >> 내부적으로 객체 하나 생성 >>
+	Event 객체 >> 사건에 대한 정보 (누가 사건, 사건 주체 , 영향 .....)
+	
+	자동으로 생성된 Event 객체의 주소를 받아서 사용 ..POINT 
+	
+	window.event.메서드 ..제공
+	window.event.속성   ..제공 
+	
+	KEY POINT : Event 객체 가 가지고 있는 메서드 , 속성 ....
+	
+	*/
+	window.onload = function(){
+		let btn = document.getElementById("mybtn");
+		btn.onclick= function(e){ //e변수가 Event객체의 주소값을 받아요 .....
+			console.log(e.type); //Event객체가 가지는 type 속성 >> 어떤 이벤트가 발생했는지 >> 종류
+			console.log(e.target); //<span>눌러봐</span>
+			console.log(e.currentTarget);//<button id="mybtn"><span>눌러봐</span></button
+			console.log(e.x); //좌표값
+			console.log(e.y);
+		}
+		
+		let btn2 = document.getElementById("mybtn2");
+		let handler  =function(event){ //Event객체의 주소 전달 받아여
+			switch(event.type){ //event.type
+			  case "click" : alert("클릭");
+			  		break;
+			  case "mouseover" : event.target.style.backgroundColor="red";	 //응용 ...
+			  		break;
+			  case "mouseout"  : event.target.style.backgroundColor="";
+			  		break;
+			}
+		}
+		
+		btn2.onclick = handler; //함수의 주소
+		btn2.onmouseover = handler; //함수의 주소
+		btn2.onmouseout = handler; //함수의 주소
+		
+		/*
+		btn2.onclick = function(e){}; //함수의 주소
+		btn2.onmouseover = function(e){}; //함수의 주소
+		btn2.onmouseout = function(e){}; //함수의 주소
+		
+		*/
+	}
+	
+	</script>
+</head>
+<body>
+		<button id="mybtn"><span>눌러봐</span></button>
+		<br>
+		<button id="mybtn2">눌러봐2</button>
+</body>
+</html>

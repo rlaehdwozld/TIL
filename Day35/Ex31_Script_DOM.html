@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #myDiv1,
+    #myDiv2 {
+      background-color: coral;
+      padding: 50px;
+    }
+
+    #myP1,
+    #myP2 {
+      background-color: white;
+      font-size: 20px;
+      border: 1px solid;
+      padding: 20px;
+    }
+  </style>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+</head>
+
+<body>
+
+  <h2>JavaScript addEventListener()</h2>
+
+  <div id="myDiv1">
+    <h2>Bubbling:</h2>
+    <p id="myP1">Click me!</p>
+  </div><br>
+
+  <div id="myDiv2">
+    <h2>Capturing:</h2>
+    <p id="myP2">Click me!</p>
+  </div>
+  <!-- 
+capture: true // default 값은 false입니다. bubble
+ -->
+  <script>
+    //1단계
+    document.getElementById("myP1").addEventListener("click", function () {
+
+      alert("You clicked the white element!");
+    }, false); // default 값은 false입니다. bubble
+
+    document.getElementById("myDiv1").addEventListener("click", function () {
+      alert("You clicked the orange element!");
+    }, false); // default 값은 false입니다.
+    //1단계
+    //2단계
+    document.getElementById("myP2").addEventListener("click", function () {
+      alert("You clicked the white element!");
+    }, true);
+
+    document.getElementById("myDiv2").addEventListener("click", function () {
+      alert("You clicked the orange element!");
+    }, true);
+    //2단계
+  </script>
+
+</body>
+
+</html>
+​

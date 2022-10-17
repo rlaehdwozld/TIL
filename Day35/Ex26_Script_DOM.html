@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function displayDate(){
+      console.log("call");
+      document.getElementById("demo").innerHTML=new Date();
+    }
+    //[1]test
+    //script 블럭
+    //document.getElementById("mybtn").onclick=diplayDate();
+    // 이코드가 문제가 생기는 이유 스크립트는 라인단위로 실행되는데 
+    //실행순서때문에 ....body 안에 요소가 메모리에 없기때문에
+    window.onload=function(){
+      console.log("load.....");
+      //document.getElementById("mybtn").onclick=diplayDate(); 괄호가 없어야 바로 호출이 안된다.
+      document.getElementById("mybtn").onclick=diplayDate;
+    }
+  </script>
+
+</head>
+<body>
+  <button id="mybtn">111</button>
+  <br>
+  <button id="mybtn2" onclick="displayDate()">222</button>
+  <br>
+  <p id="demo"></p>
+</body>
+<script>
+  //[2]test
+    //document.getElementById("mybtn").onclick=diplayDate();
+    //버튼을 클릭하기 전에 displayDate()호춣...
+    //특급 주의사항...함수의 괄호()
+
+    //document.getElementById("mybtn").onclick=diplayDate;
+</script>
+</html>

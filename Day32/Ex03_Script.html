@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /* 
+    문서가 실행되면 웹브라우져 메모리에 body 안에 요소가 로딩된다.
+    메모리에DOM tree형태로 필요에 따라서 접근.. 놀면된다.
+    DOM
+    html
+      |
+    head-body
+
+    DOM script :getElementById...
+    */
+    function print(){
+      let ele=document.getElementById("demo");//이게 DOM script함수다.
+      console.log(ele);
+      ele.innerHTML="아 배고프다";//in
+    }
+  </script>
+</head>
+<body>
+  <button onclick="print()">클릭하세요</button>
+  <p id="demo">demo라는 id는 p 태그의 주소(식별자)</p>
+</body>
+</html>

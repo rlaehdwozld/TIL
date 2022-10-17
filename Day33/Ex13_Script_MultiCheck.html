@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    let checkflag = "false";//문자열(global)
+
+    function checkForm() {
+      let list = document.myform.list;//name 속성이 list로 다 같을 때는 배열로 관리한다. 
+      console.log(list);//[0][1][2]....
+      console.log(list.length);
+
+      if (checkflag == "false") {
+        for (let index in list) {//index
+          console.log(list[index]);
+          //배열의 0번째 방에 요소 전체가 들어있다. 
+          //[0]>><<input type="checkbox" name="list" value=" java">
+          list[index].checked = true;
+        
+      }
+      checkflag="true";
+        return "[선택해제]";
+
+      } else {
+      for(let index in list){
+        list[index].checked=false;
+      }
+      checkflag="false";
+      return "[전체선택]";
+      }
+      }
+    
+      function checkForm2(list){
+          console.log(list);
+          return"....";
+
+      }
+  </script>
+</head>
+
+<body>
+  <form action="" name="myform">
+    좋아하는 과목은 : <br>
+    <input type="checkbox" name="list" value="java">JAVA<br>
+    <input type="checkbox" name="list" value="oracle">ORACLE<br>
+    <input type="checkbox" name="list" value="html">HTML<br>
+    <input type="checkbox" name="list" value="css">CSS<br>
+    <input type="checkbox" name="list" value="script">SCRIPT<br>
+    <input type="button" value="[전체선택]" onclick="this.value=checkForm()"><br>
+    <br> <input type="button" value="[전체선택]" onclick="this.value = checkForm2(this.form.list)"><br>
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload=function(){
+      let pele= document.createElement("p");
+      let hele= document.createElement("h");
+      let h3ele= document.createElement("h3");
+
+      let textnode= document.createElement("hello world");
+      let divele= document.createElement("div");
+      let textnode2= document.createElement("hi hi hi");
+
+      hele.setAttribute("title","수평선");
+
+      h3ele.appendChild(textnode);
+
+      divele.appendChild(textnode2);
+
+      document.body.appendChild(pele).appendChild(divele);
+      //<body><p><div>hi hi hi</div></p></body>
+
+      document.body.appendChild(hele);
+       //<body><p><div>hi hi hi</div></p><ht title="수평성"></body>
+
+      document.body.appendChild(h3ele);
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

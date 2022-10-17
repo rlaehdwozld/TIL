@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="UTF-8">
+   <title>Insert title here</title>
+  <script type="text/javascript">
+    let str = "10 + 20 + 30";
+    document.write(str + "<br>");
+    
+    //1. eval() 함수
+    //문자형 수식 > 계산식으로 >> "10 + 20 + 30" >> eval() >>  10 + 20 + 30 >> 계산
+    //"10 + 20A + 30" >> Error  >> 문자가 껴있으니 에러가 난다.
+    //문자형 숫자 -> 숫자
+    document.write("eval()" + eval(str) + "<br>");
+
+    //2. isNaN > Not a Number > 너 숫자 아니니 > true > false(숫자)
+    document.write(isNaN("12345") + "<br>") ; //false
+    document.write(isNaN("12345A") + "<br>") ; //true
+    document.write(isNaN("대한민국") + "<br>") ;
+    document.write(isNaN('12345') + "<br>") ;
+
+    //문자열 함수 refer
+    //https://www.w3schools.com/js/js_strings.asp
+
+
+    //숫자 함수 (Number)
+    //https://www.w3schools.com/js/js_number_methods.asp
+    //Number .....
+    //https://www.w3schools.com/js/js_numbers.asp
+
+    let i = "100";
+    let j = "200";
+
+    document.write("결합 : " + (i+j)); // + 산술, 결합
+    document.write("<br>연산 : " + (Number(i) + Number(j)));
+
+    //Number()
+    //parseInt()
+    //parseFloat()
+
+
+    //***************************************************************
+    //사건 (수많은 사건을 미리 ...) >> 개발자(행위) >> 함수 생성 >> 사건 (함수) 연결
+    /*
+    HTML 웹 페이지가 로드를 완료했습니다.
+    HTML 입력 필드가 변경되었습니다.
+    HTML 버튼을 클릭했습니다
+    종종 이벤트가 발생하면 무언가를 하고 싶을 수 있습니다.
+     https://www.w3schools.com/js/js_events.asp
+
+
+
+      Here is a list of some common HTML events:
+
+      Event   Description
+      onchange   An HTML element has been changed
+      onclick   The user clicks an HTML element
+      onmouseover   The user moves the mouse over an HTML element
+      onmouseout   The user moves the mouse away from an HTML element
+      onkeydown   The user pushes a keyboard key
+      onload   The browser has finished loading the page
+
+    onload   The browser has finished loading the page
+    >> index.html>>body안에 있는 요소를 메모리에 로딩되고 난 후에
+    >><body onload="함수호출">...함수에서 요소를 가지고 놀면된다.
+
+      회원가입시...[]-[]
+      on blur>> 포커스가 요소를 떠날 때 발생
+      on focus>> 포커스가 요소에 들어올때
+
+    */    
+   function bodyload(){
+    console.log("load");
+    //보장을 받는다.
+    //****body 안에 있는 모든 요소를 가지고 놀 수 있다...]
+    let data= document.myform.money.value;
+    console.log(isNaN(data));
+   }
+   function focusFunc(){
+    document.getElementById("myinput").style.background="gold";
+   }
+   function blurFunc(){
+    document.getElementById("myinput").style.background="white";
+   }
+   function selectTag(){
+    let value=document.myform.sel.value;
+    alert(value);
+   }
+   function changeColor(obj){
+    //java: this(객체 자신)
+    //Javascript : this(point)(자신:요소 자신)
+    console.log(obj);
+    obj.style.backgroundColor="gold";
+   }
+   function changeColor2(obj){
+    //java: this(객체 자신)
+    //Javascript : this(point)(자신:요소 자신)
+    console.log(obj);
+    obj.style.backgroundColor="white";
+   }
+   </script>
+</head>
+<body onload="bodyload()">
+    <form action="#" name="myform">
+      <input type="text" id="myinput" name="myinput" onfocus="focusFunc()" onblur="blurFunc()">
+      <br>
+      <select name="sel" onchange="selectTag()" >
+        <option value="A">AA</option>
+        <option value="B">BB</option>
+        <option value="C">CC</option>
+        <option value="D">DD</option>
+      </select>
+      <br>
+      <input type="text" onmouseover="changeColor(this)" onmouseout="changeColor2(this)">
+      <br>
+      <input type="text" onkeypress="alert(안돼안돼">
+      <br>
+      <input type="text" value="1000" name="money">
+    </form>
+
+
+</body>
+<script></script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    function getzipcode(obj){
+      let value=obj.value;
+      let one= value.substring(0,7);
+      let two= value.substring(8);
+      window.opener.document.mainform.zipcode.value=one;
+      opener.mainform.addr.value=two;
+      window.close();
+    }
+    function changeColor2(obj){
+    //java: this(객체 자신)
+    //Javascript : this(point)(자신:요소 자신)
+    console.log(obj);
+    obj.style.backgroundColor="white";
+   }
+    /* 함수 생성하고 onclick =""함수 호출시
+    value="200-300 서울시 강남구 역삼동"값을 가지고 와서
+    우편번호와 주소 분리
+    200-300
+    서울시 강남구 역삼동
+    부모창에 : window.opener 통해서 zip code,addr값을 전달하세요 
+    그리고 현재창을 닫ㅇ세요
+     */
+  </script>
+</head>
+<body>
+  <h3>DB연결 검색한 결과 출력된 화면(선택)</h3>
+	<form action="" name="zipform">
+		<input type="button" value="200-300 서울시 강남구 역삼동" name="btn" onclick="getzipcode(this)"><br>
+		<input type="button" value="200-400 경기도 성남시 삼평동" name="btn" onclick="getzipcode(this)"><br>
+		<input type="button" value="300-500 제주시 서귀포동"     name="btn" onclick="getzipcode(this)"><br>	
+	</form>
+</body>
+</html>

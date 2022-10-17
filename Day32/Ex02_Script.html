@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+    //javascript 해석 > 웹 브라우저 (해석 + 내장객체 제공)
+    //내장객체(자원들) >> window 객체
+
+    window.document.write("방가방가<br>");
+
+    //window 객체 생략
+    document.write("window객체 생략 가능<br>");
+
+    console.log("디버깅, 결과미리보기, 오류메세지 확인");
+    console.log(10+10);
+
+    document.write("<b>hello world</b>");
+    document.write('<table border="1">');
+    document.write('<tr><td>aa</td></tr><tr><td>bb</td></tr>')
+    document.write('</table>')
+
+    //var let const
+
+    var num; //타입이 정해지지 않아요 (정수, 문자, 날짜 올 수 있음)
+    console.log(num); //undefined 정상 출력 ... 정의되지 않았음
+    num = 10; //값을 가지는 순간 내부적으로 타입 결정
+    console.log("num : " + num);
+
+    let num2 = 100; 
+      console.log(num2);
+      console.log(typeof(num));//number
+
+      //javascript순서대로 실행된다.
+      // let element=window.document.forms[0].elements[0];
+      // console.log(element);
+      //Cannot read properties of undefined (reading 'elements')
+      //자바스크립트는 순서대로 실행되기때문에 form에 있는 element를 이 위치에서는 읽어오지 못하기 때문에 script블럭을 바디 부분 밑으로 보내주면 된다.
+
+      //순서에 상관없이 프로그래밍하려면 함수를 기반으로 만들어서 호출하면 된다.
+      // 함수를 생성.... 함수는 호출에 의해서 싫행
+      function data (){
+        let element=window.document.forms[0].elements[0];
+        alert(element);
+      }
+
+</script>
+</head>
+<body>
+  <form action="#" method="get"name="myform">
+    <input type="text" name="userid"value="hong"><br>
+    <input type="password" name="pwd" value="1004"><br>
+    <input type="submit" value="전송">
+  </form>
+  <input type="button"value="클릭해봐" onclick="data()">
+</body>
+<script>
+      let element=window.document.forms[0].elements[0];
+      console.log(element);//<input type="text" name="userid"value="hong">
+      console.log(element.value.length);
+
+      let value=window.document.myform.userid.value;
+      console.log("타입:"+typeof(value));//string
+
+      if(value.length<5){
+        alert("다시 입력해");
+        element.value="";
+      }
+</script>
+</html>

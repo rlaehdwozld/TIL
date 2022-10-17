@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/* 
+		유효성 검증 
+		검증 누가 ?
+		kosa.or.kr 접속 > 회원가입 클릭 > 회원가입 페이지 (client)
+		
+		1.client >> 회원가입 입력(id,pwd) >> 서버로 전송 >> 서버가 값을 받아요 >> 검증  >> Client >> 응답 
+		>>DB작업 >> 중복 ID 검사 
+		2.client >> 회원가입 입력(id,pwd) >> 전성(x) >> javascript 검증 >> 검증완료 >> 서버로 전송
+		클라이언트에서 할수 있는 모든 것은 Client해결하자 >> JavaScript 로 해결.....
+		
+		*/
+		function send(){
+			//유효성 검증 >> 문제가 없다면 >> 서버로 전송
+			//원하는 값이 아니면 재입력 요청
+			
+			//1.요소의 정보를 가지고 와야 하는데 ....
+			// document.forms[0].elements[0].value ....
+			// 권장사항 : DOM script 사용 (document.getElementById()) 모든 요소는 id="" 
+			getElementById
+			let userid = document.loginform.txtuserid;
+			//userid => <input type="text" ...
+			console.log(userid);
+			console.log(userid.value);
+			
+			//DOM 요소의 id식별자가 반드시 (권장)
+			let pwd = document.getElementById("txtpwd");
+			console.log(pwd);
+			console.log(pwd.value);
+			
+			//검증로직 개발자 마음 ....
+			//1. 입력 했는지 안했는지
+			//2. 입력한 값이 로직에 맞는지 확인
+			if(userid.value =="" || !(userid.value.length >= 3 && userid.value.length <= 10)){
+				alert("다시 입력해 주세요");
+				document.loginform.txtuserid.focus();
+				userid.select();
+			}else{
+				alert("검증완료");
+				//서버로 전송
+				//form action="Ex08_login.jsp"
+				document.loginform.action="Ex08_login.jsp";
+				document.loginform.submit(); //form 태그가 내장된 submit() 호출
+			}
+		}
+	</script>
+</head>
+<body>
+		<form action="" method="get" name="loginform">
+			ID:<input type="text" name="txtuserid">
+			PWD:<input type="password" name="txtpwd" id="txtpwd">
+			<input type="button" value="전송" onclick="send()">
+			<!--  
+			 type="submit"
+			 type="image"
+			 type="button" onclick=""
+			--> 
+		</form>
+</body>
+</html>
+
+

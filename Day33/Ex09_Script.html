@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .container{
+      border: 10 solid black; 
+    }
+  </style>
+</head>
+<body>
+  <p>Scope</p>
+  <p id="demo1"></p>
+  <p id="demo2"></p>
+  <p id="demo3"></p>
+  <p id="demo4"></p>
+
+<div id="container">
+  <div>
+    <div>
+
+    </div>
+  </div>
+</div>
+</body>
+<script>
+  //global variable(모든 함수안에서 적용 가능(페이지 안에서))
+var gname="world";
+
+myFunction();
+function myFunction(){
+  //함수안에 구현(local variable)
+  aaa="아무개";//변수인정 : global >> x하지말자!!!
+  console.log("aaa"+aaa);
+
+  var carname="Volvo";//local....
+  document.getElementById("demo1").innerHTML=typeof(carname)+" "+carnmae+"<hr>";
+  document.getElementById("demo2").innerHTML=typeof(gname)+" "+carnmae+"<hr>";
+}
+console.log(aaa);
+</script>
+</html>

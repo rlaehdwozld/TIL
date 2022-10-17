@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	//global 변수
+	let name="";
+	let email=false;
+	
+	function initValue(frm){
+		name = frm.username.value;
+		email= frm.checkmail.checked;
+	}
+	
+	function copySend(frm){
+		//시작 ...
+		console.log(frm);// 확인하고 코드 작업 ^^
+		console.log(frm.username.value);
+		console.log(frm.checkmail.checked); //true , false
+		//POINT ^^
+		//왠만하면 id="aa" 만들어 쓰면 s
+		//DOM script 
+		//document.getElementById("aa")
+		
+		
+		
+		if(frm.copy.checked){
+			initValue(frm);
+			frm.copyname.value = name;
+			frm.copymail.checked = email;
+			//frm.copyname.value = frm.username.value;
+			//frm.copymail.checked =  frm.checkmail.checked;
+		}else{
+			alert("선택해지")
+			frm.copyname.value = ""
+			frm.copymail.checked =  false;
+		}
+	}
+	</script>
+</head>
+<body>
+	<form>
+		<fieldset>
+			<legend>주문정보</legend>
+			이름:<input type="text" name="username"><br> 
+			    <input type="checkbox" name="checkmail">배송정보 Email수신<br>
+			<hr>
+			<input type="checkbox" name="copy" onclick="copySend(this.form)">
+			주문자 정보와 배송지 정보 동일
+		</fieldset>
+		<hr>
+		<fieldset>
+			<legend>배송지 정보</legend>
+			이름:<input type="text" name="copyname"><br> 
+			       <input type="checkbox" name="copymail">배송정보 Email수신<br>
+		</fieldset>
+	</form>
+</body>
+</html>

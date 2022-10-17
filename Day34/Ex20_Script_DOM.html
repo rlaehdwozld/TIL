@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .democlass{color:red;}
+  </style>
+</head>
+<body>
+  <div id="div">
+    <h1 class="democlass">helloworld1</h1>
+    <h1 class="democlass">helloworld2</h1>
+    <h1 class="democlass">helloworld3</h1>
+  </div>
+</body>
+<script>
+     //document.getElementsByTagName("h1")[0].removeAttribute("class");
+
+      /* let harr=document.getElementsByTagName("h1");
+      console.log(harr);
+      for(let i=0;i<harr.length;i++){
+        harr[i].removeAttribute("class");
+    } */
+      //삭제 실패 원인 파악
+      /* let arr=document.getElementsByTagName("h1");
+      for(let index in arr){
+        console.log(arr[index]);
+        console.log("index:"+index+"-index"+arr.length);
+        document.getElementById("div").removeChild(arr[index]); */
+        //삭제 순서0->1->2
+        //[0][1][2]
+        //[helloworld1][helloworld2][helloworld3]
+
+         //[0][1]
+        //[helloworld2][helloworld3]
+
+          //[0]
+        //[helloworld2]
+      //}
+      //예외가 발생하지 않고 자식 모두 삭제
+      //개선된 for문
+    /*   let arr=document.getElementsByTagName("h1");
+      for(let index in arr){
+        if(arr.length>0){
+          document.getElementById("div").removeChild(arr[arr.length-1]); 
+        }
+      } */
+      /*   2->1->0 삭제하는 슌서
+        012 2삭제
+        01  1삭제
+        0   0삭제
+        
+      */
+     //자기 자신을 삭제하기
+    let arr= document.getElementsByTagName("h1");
+    let len=arr.length//3
+    for(let i=0;i<len;i++){
+      //remove()자기자식 삭제
+      arr[arr.length-1].remove();
+    }
+</script>
+</html>

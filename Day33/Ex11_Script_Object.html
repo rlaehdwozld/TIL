@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내장객체</title>
+  <script>
+    /*
+      javascript 다양한 내장 객체 제공 : new 통해서... 이미 생ㅇ성된 객체( 그냥 사용)
+      ex) Data(),Array()
+  
+    */
+    let today = new Date();
+    console.log(today);
+    console.log(today.getFullYear());
+    console.log(today.getMonth() + 1);
+    console.log(today.getDate());
+    console.log(today.getHours());
+    console.log(today.getMinutes());
+    console.log(today.getSeconds());
+
+    //java : Math.Random()>> static함수
+    console.log(Math.random());//0<=범위<1
+    console.log(parseInt(Math.random() * 45) + 1);
+    //javascript로또 프로그램
+    console.log(Math.round(3.532));
+    console.log(Math.max(1, 2, 3, 5, 6, 7, 8,));
+    //point문자열 관련 함수
+    let str = "ABCDEF";
+    //document.write()
+
+    with(document){
+      write(str+"<br>");
+      write(str.length+"<br>");
+      write(str.charAt(2)+"<br>");
+      write(str.indexOf("D")+"<br>");
+      write(str.concat("홀딜동")+"<br>");
+    
+
+    //slice(start,end)
+    //substring(start,end)
+    //substr(start,length)
+
+    let str2 = str.replace("E","zzzzzz");
+    write(str2 +"<br>");
+    //str="ABCDEF"
+    write(str.substring(2,4)+"<br>");//예상하기론  cd가 나올 것 같다.
+    write(str.substring(1,1)+"<br>");//아무것도 안나와야한다. 
+    write(str.substring(1,2)+"<br>");//지기자신 B
+    write(str.substring(1)+"<br>");//BCDEF
+
+    let strarr="A B C D";
+    let arr=strarr.split(" ");//return은 배열이다.
+    write(arr);//toString()재정의-> javascript Array가 
+    //todaypoint
+    //java: 개선된 for문
+    //for(String s: arr){s값 출력}
+
+    //MS(c#), javaScript>> in
+    //javascript : for(let s in arr){}
+    write("<br>");
+    for(let index in arr){//약속 개선된 for문 변수명 : index
+      //write(index + "<br>"); //0123
+      write(arr[index]+"<br>");//ABCD 자바스크립트에서는 인덱스값을 출력하기때문에 배열안에 인덱스를 넣어줘야제대로 출력된다.
+
+    }
+
+    }
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

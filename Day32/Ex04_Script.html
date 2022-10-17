@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>javascript문법</title>
+  <script>
+    /* 
+    1. 변수생성> 값입력> 타입설정 (number, string)
+    var a;정의되지 않은 것
+    let b;정의되지 않은 것
+    a=10; 타입설정 number
+    b="A"; 타입설정 String
+    자바스크립트는 값을 넣을 때 타입이 설정되기때문에 굉장히 
+    유연한 언어라고 할 수 있다.
+    Es5이전 문법에서는 (var)만 썼다. >> Es6(ECMA)>>let, const
+  
+    var, let,const
+    권장 : let, const
+  
+    초기화(처음 값을 같는 것)
+    javascript(정수, 실수, boolean, 문자)
+    JAVA : int i=100; float f=3.14f;
+    내부적으로 가지고 있는 타입 : number, boolean, Array, object...타입
+  
+    변수 (scope)
+    현재 page>>Ex04_Script.html>>유효
+    1. let name="dongjae"; 페이지 전체(global : 전역)
+    2. 함수안에 있는 let age=20; 함수안에서만 사용 가능하다.local 변수라고 부른다. 
+  
+   */
+    let name = "dongjae";
+    function call() {
+      let age = 20;//함수 안에 만든 변수(local variable)
+      console.log("당신의 이름:" + name + "나이는:" + age);
+    }
+
+    let n;//초기화 되어 있지 않아요(타입이 없어요)
+    console.log(n);//undefined
+    n = 100;
+    //****javascript 전역, 지역 변수는 초기화 이후에 사용하자!*****
+
+    let i, j;
+    i = 200;
+    j = 300;
+    let result = i + j;
+    console.log(result);
+
+    let intnum = 100;//정수
+    let dnum = 12.345;//실수
+    let flag = true;//boolean
+    let str = null;//값이 없다.
+    let str2 = "ABC";//문자열
+
+    console.log(typeof (intnum));//number
+    console.log(typeof (dnum));//number
+    console.log(typeof (flag));//boolean
+    console.log(typeof (str));//object
+    console.log(typeof (str2));//string
+    console.log(typeof (intnum));
+
+    //연산자
+    //산술(+,-,/,%)
+    let num1 = 10;
+    let num2 = 3;
+    document.write(num1 / num2 + "<br>");//실수
+    document.write(num1 % num2 + "<br>");//나머지
+
+    //관계==(===(값과 타입도 비교)),!=,>=...
+    let a = 3;
+    let b = 5;
+    console.log((a == b));
+    console.log((a != b));
+    console.log((a > b));
+
+    //논리(&&,||)
+    console.log((10 > 5) && (1 != 3));//true
+    console.log((10 < 5) || (1 != 3));//true
+
+    //삼항 연산자
+    let result2 = (4 % 2 == 0) ? "짝수" : "홀수";
+    console.log(result2);
+    //대입 연산자(+=,-=,*=,/=)
+    let p = 10;
+    let k = 5;
+    p += k;//p=p+k;
+    console.log(p);
+
+    let x = 5 + 5;
+    let y = "5" + 5;//+ (산술, 결합)
+    console.log(x);
+    console.log(y);
+
+    let v = "5";
+    let v2 = 5;
+    let v3 = 5;
+    console.log(v == v2);//값을 비교하는 연산자
+    console.log(v === v2);//point : 값만 비교하는 것이 아닌 타입도 동일해야한다. 
+    console.log(v2 === v3);//자바랑 차이(===)
+  </script>
+</head>
+
+<body>
+  <button onclick="call()">변수확인</button>
+</body>
+
+</html>

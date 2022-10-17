@@ -1,7 +1,4 @@
-오늘의 목표
-
-1. html
-2. sqld 공부
+2022.10.11 화요일
 
 ## 트리거
 
@@ -62,30 +59,44 @@ CREATE TABLE TBL_TEST1( ID        NUMBER, NAME   VARCHAR2(30), TEL     
 
 ```
 
-이제 TBL_TEST1 테이블에 데이터를 INSERT, UPDATE, DELETE 할때 작업 내용 로그 데이터로 TBL_EVENTLOG에 자동으로 추가하는 기능을 하는 트리거 TBL_EVENTLOG를 만들어 보자.  
+이제 TBL_TEST1 테이블에 데이터를 INSERT, UPDATE, DELETE 할때 작업 내용 로그 데이터로 TBL_EVENTLOG에 자동으로 추가하는 기능을 하는 트리거 TBL_EVENTLOG를 만들어 보자.
+
+```sql
 CREATE OR REPLACE TRIGGER TRG_EVENTLOG             AFTER             INSERT OR UPDATE OR DELETE ON TBL_TEST1             -- (FOR EACH ROW... 생략시 기본으로 STATEMENT로 사용)BEGIN       -- 이벤트 종류 구분 (조건문을 통한 분기)       IF (INSERTING)           THEN INSERT INTO TBL_EVENTLOG(MEMO)                   VALUES( 'INSERT 쿼리가 실행되었습니다.' );       ELSIF (UPDATING)           THEN INSERT INTO TBL_EVENTLOG(MEMO)                   VALUES( 'UPDATE 쿼리가 실행되었습니다.' );       ELSIF (DELETING)           THEN INSERT INTO TBL_EVENTLOG(MEMO)                   VALUES( 'UPDATE 쿼리가 실행되었습니다.' );       END IF;       -- COMMIT;       --> 트리거 내에서는 COMMIT / ROLLBACK 사용 불가END;--==>> Trigger TRG_EVENTLOG이(가) 컴파일되었습니다.
+```
+
 이제 TBL_TEST1에 데이터를 추가하거나 갱신하거나 삭제하는 쿼리문을 실행하게 되면 쿼리문이 실행된 이후 TRG_EVENTLOG 트리거가 자동으로 실행되면서 TBL_EVENTLOG에 로그 메시지를 기록할 것이다.
 
-BEFORE STATEMENT TRIGGER
+BEFORE STATEMENT TRIGGER  
 앞서 만든 테이블 TBL_TEST1에 데이터를 INSERT, UPDATE, DELETE 하는 작업을 업무시간(8시 ~ 18시)에만 가능하도록 제한하는 트리거를 만들어보자.
 
-CREATE OR REPLACE TRIGGER TRG_TEST1_DML             BEFORE             INSERT OR UPDATE OR DELETE ON TBL_TEST1BEGIN    IF ( TO_NUMBER( TO_CHAR( SYSDATE, 'HH24' ) ) < 8         OR TO_NUMBER ( TO_CHAR( SYSDATE, 'HH24') ) > 17 )        THEN RAISE_APPLICATION_ERROR(-20003, '작업은 08:00 ~ 18:00 까지만 가능합니다.');    END IF;END;--==>> Trigger TRG_TEST1_DML이(가) 컴파일되었습니다.
+```sql
+CREATE OR REPLACE TRIGGER TRG_TEST1_DML               BEFORE             INSERT OR UPDATE OR DELETE ON TBL_TEST1BEGIN    IF ( TO_NUMBER( TO_CHAR( SYSDATE, 'HH24' ) ) < 8         OR TO_NUMBER ( TO_CHAR( SYSDATE, 'HH24') ) > 17 )        THEN RAISE_APPLICATION_ERROR(-20003, '작업은 08:00 ~ 18:00 까지만 가능합니다.');    END IF;END;--==>> Trigger TRG_TEST1_DML이(가) 컴파일되었습니다.
+```
+
 이제 TRG_TEST_DML 트리거로 인해 업무시간 이외에 데이터를 추가, 변경, 삭제시 이 작업을 수행하기 전에 오류 메시지가 뜨게 된다.
 
-BEFORE ROW TRIGGER
+BEFORE ROW TRIGGER  
 이번에는 참조 관계가 설정된 데이터(자식) 삭제를 먼저 수행하는 트리거를 만들어 보도록 하겠다. 역시 테이블을 먼저 만들어 준다.
 
+```sql
 CREATE TABLE TBL_TEST2( CODE      NUMBER, NAME      VARCHAR2(40), CONSTRAINT TEST2_CODE_PK PRIMARY KEY(CODE));--==>> Table TBL_TEST2이(가) 생성되었습니다.CREATE TABLE TBL_TEST3( SID       NUMBER, CODE    NUMBER, SU        NUMBER, CONSTRAINT TEST3_SID_PK PRIMARY KEY(SID), CONSTRAINT TEST3_CODE_FK FOREIGN KEY(CODE)                    REFERENCES TBL_TEST2(CODE));--==>> Table TBL_TEST3이(가) 생성되었습니다.
+```
+
 외래키인 TBL_TEST3.CODE가 기본키 TBL_TEST2.CODE를 참조하고 있는 구조이다. 때문에 TBL_TEST3에서 참조하고 있는 모든 CODE를 참조하는 데이터가 지워지지 않는다면 TBL_TEST2에 있는 데이터는 지울 수 없다.
 
 이러한 제약을 미리 해결하여 TBL_TEST2의 데이터를 지울 수 있도록 해주는 트리거를 만들면 다음과 같다.
 
+```sql
 CREATE OR REPLACE TRIGGER TRG_TEST2_DELETE             BEFORE             DELETE ON TBL_TEST2             FOR EACH ROWBEGIN    DELETE    FROM TBL_TEST3    WHERE CODE = :OLD.CODE;END;--==>> Trigger TRG_TEST2_DELETE이(가) 컴파일되었습니다.
+```
+
 TRG_TEST2_DELETE를 통해 부모 테이블의 데이터를 지우기에 앞서 부모 테이블의 CODE를 참조하고 있는 자식 테이블의 데이터를 먼저 지워준다.
 
 여기서 [ :OLD ] 는 UPDATE 또는 DELETE를 수행하는 엔터티를 만들어 관계로 연결해야 한다.
 <br><br>
-도메인(Domain)
+
+### 도메인(Domain)
 
 속성이 가질수 있는 범위를 뜻한다.
 

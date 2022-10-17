@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>우편번호 검색</title>
+	<style type="text/css">
+		table,tr,th,td{
+			border: 1px solid blue;
+			border-collapse: collapse;
+		}
+	</style>
+</head>
+<body>
+	<form action="" name="mainform">
+		<table style="width: 500px">
+			<tr>
+				<th>우편번호</th>
+				<td>
+					<input type="text" name="zipcode" readonly>
+					<input type="button" value="우편번호검색" 
+					  onclick="window.open('Ex12_popup.html','zip','width=500,height=500')">
+				</td>
+			</tr>
+			<tr>
+				<th>주소</th>
+				<td>
+					<input type="text" size="50px" name="addr">
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+​

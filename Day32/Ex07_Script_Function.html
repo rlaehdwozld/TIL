@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /* 
+    http://www.w3schools.com/jsref/met_win_setinterval.asp
+
+    setInterval(function, milliseconds);
+    
+    ex) setInterval(function(){},1000);
+
+    ex) function call   (){}
+        setInterval(call(),1000);
+
+    1. 익명함수(일회성 함수) : function(){}
+    2. callback함수 (프로그램 논리(흐름)에 의해서 자동으로 호출되는 함수)
+        >>1초마다, 재호출, 익명함수가...
+    */
+    let mytime=window.setInterval(function(){//익명함수이면서 callback함수
+      let d=new Date();//java Date d= new Date();
+      let t=d.toLocaleTimeString();
+      document.getElementById("time").innerHTML=t;
+    },1000);
+
+    //mytime==setInterval
+    function myTimeStop   (){
+      window.clearInterval(mytime);
+    }
+  </script>
+</head>
+<body>
+  <p id="time"></p>
+  <button onclick="myTimeStop()">stop time</button>
+</body>
+</html>

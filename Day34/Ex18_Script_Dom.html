@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+	/*  
+	onload 이벤트가 발생하는 시점 : body 태그 안에 모든 요소가 브라우져 메모리에 Loding >> DOM 생성
+	function call(){};
+	
+	1.<body onload="call()">
+	2.window.onload = "call()"
+	
+	필요에 따라서 call() 재사용 ... load 한번 쓸거야 ...
+	
+	함수의 이름이 필요할까 ... (익명함수:일회성함수) :  재사용 불가
+	
+	page 에 모든 요소가 loading 된 후에 함수를 자동 호출(이름이 없는 익명함수)
+	
+	*/
+	window.onload=function(){ //익명함수 , 일회성 함수 ....
+		let out="";
+		out+="<ul>";
+			out+="<li>javascript</li>";
+			out+="<li>jquery</li>";
+			out+="<li>vue</li>";
+		out+="</ul>";
+		
+		document.body.innerHTML =out;
+		
+		//DOM >> 동적 >> 기존에 없던 것을 추가 , 삭제 , 변경
+		let header = document.createElement("h1");
+		//<h1></h1>
+		
+		let textnode = document.createTextNode("hello");
+		//hello
+		
+		header.appendChild(textnode);
+		//<h1>hello</h1>
+		
+		document.body.appendChild(header);
+		
+		//img 태그 동적으로 생성하고 src 속성도 추가 body 자식으로 append (개발자 ^^)
+		//width , height 속성도 추가
+		let img = document.createElement("img"); //<img>
+		img.setAttribute("src",""); // <img src="images/1.jpg">
+		img.setAttribute("width","150");
+		img.setAttribute("height","150");
+		 // <img src="images/1.jpg" width="150" height="150">
+		 
+		document.body.appendChild(img); 
+		 
+	}
+	</script>
+</head>
+<body>
+HELLO WORLD
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">/* 
+
+javascript : 언어 > Web > 해석 실행 > 웹 브라우져(해석기:엔진) > 라인단위(순서) 실행
+javascript : 객체지향언어 > class 개념 > 상속 , 다형성, 재사용성 ....
+
+​
+
+javascript 사용
+1. html 의 content , attribute 변경 , 삭제 , 추가 [동적]으로
+2. css 속성 변경 , 삭제 , 추가 [동적]으로
+3. 유효성 검증 (id 입력, 주민번호 맞는지 , 데이터 숫자 ...검증)
+4. 동적인 웹 화면 구성 (화면구성)
+5. 전 세계적으로 1위 언어
+-모든 개발 회사 , 개발자 관심 ....
+-javascript > 효율적으로 > 코드량 줄이고 > 많이 쓰는 재사용 > lib or FrameWork
+-50줄의 코드 구현 .. 내가 만든 것을 당신이 ... 5줄로 할 수 있어
+-jquery.js (내부적인 코드 : javascript) >> 안에 있는 자원을 활용 > 생산성 극대화
+-angular.js(MVC) , vue.js , react.js ...... 100여가지가 넘는 ....
+-우리나라 개발 회사 (javascript : FrameWork)
+-신규 : vue.js , react.js (Front) 단점: 버전변경 .... 사라질 수 도 있다
+-Front 최소 : vue.js 또는 react.js 
+
+​
+-javascript 언어 웹 브라우져 없이 로컬 서버에서 동작 (마치 java 처럼)
+-Node.js®는 Chrome V8 JavaScript 엔진으로 빌드된 JavaScript 런타임입니다.
+-back 단의 코드 javascript 대체 >> 서브 (채팅 서버, 보조 서버) >> npm 학습
+
+​
+
+6. 문법 (java 흡사 ...)
+6.1 대소문자를 엄격하게 구분
+6.2 종결자 ;
+6.3 타입(var , const , let) : let i="A"; let s = "aaa"; const NUM=100; 
+유연한 언어 : var v; v=10 이때 내부적으로 (값을 받는 시점에) >> number
+ex) int i =10; double d = 3.14;
+연산자 , 제어문(java 동일) , 객체 
+6.4 사용법 (css 사용법과 동일)
+
+-in-line (태그 안쪽에 : <p onclick="<script>...")
+-internal(page 안에서 일반적으로 <head><script> ...코드</head>)
+-external(외부 파일 :common.js >> link 방식) 선호 (유지보수 , 재사용)
+
+value
+
+*/
+function call(){//public void call(){}
+alert('internal')
+}
+</script>
+<script type="text/javascript" src="script/common.js"></script>
+</head>
+<body>
+    <h3>in-line</h3>
+    <input type="button"value="inline" onclick="alert">
+    <!--
+      이벤트(생성)->행위 구현(함수)
+     -->
+    <hr>
+    <input type="button"value="internal" onclick="call()">
+    <hr>
+    <input type="button"value="external"onclick="excall()">
+    <hr>
+</body>
+</html>

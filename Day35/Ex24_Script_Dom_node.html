@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.onload=function(){
+      //DOM객체 자원...
+      //모든 자원에 대한 사용이 가능하다.
+
+      //DOM script는 계층 트리 형태이다. (node 개념 접근 : 부모, 자식, 형제 개념 )
+      let menode;
+      menode=document.getElementById("me");
+      menode.style.backgroundColor="gold";
+
+      let parentnode = menode.parentNode;//body
+      parentnode.style.backgroundColor="pink";
+
+      let grandenode = parentnode.parentNode;//html
+      grandenode.style.backgroundColor="red";
+
+      let my = document.getElementById("mychild");
+      console.log(my);
+      console.log(my.firstChild.nodeName);//LI
+      console.log(my.firstChild.innerText);//LI>AA
+      //innerHTML, innerTEXT>> value가 없는 친구 >>p,div,li,span...
+      //BB라는Text값을 가지고 오고 싶다.
+      console.log(my.firstChild.nextSibling.innerText);//BB
+
+      console.log(my.childNodes);
+      //질문 : my.childNodes return type>> Array^^
+      //[<li>AA</li>][<li>BB</li>][<li>CC</li>]
+      console.log(my.childNodes[0]);
+      console.log(my.childNodes.length);
+      
+
+    }
+  </script>
+</head>
+<body>
+  <div>A</div>  <div>B</div>  <div id="me">C</div>  <div>D</div>  <div>E</div>  <div></div>
+  <ul id="mychild"><li>AA</li><li>BB</li><li>CC</li></ul>
+</body>
+</html>

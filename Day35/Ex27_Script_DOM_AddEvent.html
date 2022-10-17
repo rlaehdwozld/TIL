@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    /*
+    element.addEventListener(event, function, useCapture);
+첫 번째 매개변수는 이벤트 유형(예: " click" 또는 " mousedown" 또는 기타 HTML DOM 이벤트 )입니다.
+두 번째 매개변수는 이벤트가 발생할 때 호출하려는 함수입니다.
+element.removeEventListener("mousemove", myFunction);
+
+     */
+  </script>
+</head>
+
+<body>
+  <button id="mybtn">클릭</button>
+  <p id="demo"></p>
+</body>
+<script>
+  //1. 하나의 요소는 여러개의 event를 가질 수 있다.
+  //2. 이벤트가 더이상 필요하지 않다면 removeEventListener()제거가능 (단 addEvent 추가)
+
+  document.getElementById("mybtn").addEventListener("click", displayText);//괄호 안씀
+  //document.geElementById("mybtn").addEventListener(type,function(e){},capture)
+  function displayText() {
+    document.getElementById("demo").innerHTML = "hello world";
+  }
+</script>
+
+</html>

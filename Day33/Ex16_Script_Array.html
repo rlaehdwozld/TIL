@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <script>
+      let i = 1;
+      let sum = 0;
+      while(i <= 10){
+         sum += i;
+         i++;
+      }
+      console.log("sum : " + sum);
+      console.log("i : " + i);
+
+      let sum2 = 0;
+      for(let i = 0 ; i <= 10 ; i++){
+         if(i % 3 === 0){
+            console.log("i : " + i);
+            continue;
+         }
+         console.log("for i : " + i);
+         sum2+=i;
+      }
+      /////////////////////////////////
+      //Array
+      /* 
+      java에서는 정적(Array)>> 배열방 크기 고정 : 동적(Collection)>>다양한 class
+      int[]arr= new int[3];
+      int[]arr= new int[]{1,2,3};
+      int[]arr= {11,22,33};//key point
+
+      List<String> li= new ArrayList<String>();
+        li.add("A");
+        li.add("B");
+        
+        javaScript >> 정적 + 동적 >> (Array)
+        선언 방법 
+        let arr=[];//best(코드)
+        arr.push();
+        arr.pop();
+        
+      */
+     let arr=[10,20,30];//좋은 냄새가 나는 코드 
+     for(let i=0;i<arr.length;i++){
+      document.write(arr[i]+"<br>");
+     }
+     //BEST
+     let arr2=[];
+
+
+     let eng= new Array(3);//나쁜 냄새 bad
+     for(let i=0;i<eng.length;i++){
+      document.write(eng[i]+"<br>");
+      //각각의 방은 값의 정보를 가지고 있지 않다.
+
+     }
+     eng[0]=100;
+     eng[1]=200;
+     eng[2]=300;
+     document.write("<hr>");
+     for(let i=0;i<eng.length;i++){
+      document.write(eng[i]+"<br>");
+     }
+     //good
+   </script>
+<body>
+   
+</body>
+</html>

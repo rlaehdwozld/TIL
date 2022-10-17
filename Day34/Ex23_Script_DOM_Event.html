@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style>
+		table,td,th{ border-collapse: collapse;}
+		td,th{border: 1px solid black;}
+		td{background-color: aqua;}
+	</style>
+</head>
+<body>
+  <div id="div">
+		행의수 : <input type="text" id="txtrow" name="txtrow" value="2"><br>
+		열의수 : <input type="text" id="txtcolumn" name="txtcolumn" value="2"><br>
+		<input type="button" id="b1"  value="동적테이블 생성" >
+		<input type="button" id="b2"  value="동적테이블 제거" >
+	</div>
+  <table>
+    <tr>
+      <td>
+        1
+      </td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr></tr>
+  </table>
+</body>
+
+<script type="text/javascript">
+	document.getElementById('b1').onclick = function(){
+		let row = document.getElementById('txtrow').value;
+		console.log(row);
+		let col = document.getElementById('txtcolumn').value;
+		console.log(col);
+		let table = document.createElement('table');
+		for(let i = 0; i<row; i++){
+			let tr = document.createElement('tr');
+			for(let j = 0; j<col; j++){
+				let td = (i==0) ? document.createElement('th') : document.createElement('td');
+				let text = document.createTextNode(i+1 + '행 ' + (j+1) + '열');
+				td.appendChild(text);
+				tr.appendChild(td);
+			}
+			table.appendChild(tr);
+		}
+		document.body.appendChild(table);
+	}
+	document.getElementById('b2').onclick=function(){
+		let arr = document.getElementsByTagName('table');
+		let len = arr.length;//3
+			//remove() 자기자신 삭제
+		if(len>0){
+			arr[arr.length-1].remove();
+		} else {
+			alert('테이블이 없습니다');
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    let a=8;
+    if(a%2==0){
+      document.write("짝수:"+a+"<br>")
+    }else{
+      document.write("홀수:"+a+"<br>")
+    }
+    let c=7;
+    if(c%2==0){
+      document.write("2의 배수"+c+"<br>")
+    }else if(c%3==0){
+      document.write("3의 배수"+c+"<br>")
+    }else{
+      document.write("기타 등등"+c+"<br>")
+    }
+    //for 1~100까지
+    let sum=0;
+    for(let i=0;i<=100;i++){
+      sum+=i;
+    }
+    console.log(sum);
+    document.write("<hr>")
+    let sum1=0;
+    for(let i=2;i<=9;i++){
+      for(let j=1;j<=9;j++){
+        document.write(i+"*"+j+"="+i*j+"&nbsp;&nbsp;&nbsp;");
+      }
+      document.write("<br>");
+    }
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

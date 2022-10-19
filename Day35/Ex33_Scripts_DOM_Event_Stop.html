@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+ <meta charset="UTF-8">
+ <title>Insert title here</title>
+ <script type="text/javascript">
+ function checkTarget(event){
+     console.log(event.type); //click
+ };
+ 
+ function showmsg() {
+    event.stopPropagation(); //이벤트의 전파를 막겠다
+    console.log('Webisfree');
+  }
+ 
+ var doDep1 = function(event) {
+     alert('Clicked dep1');
+  }
+ var doDep2 = function(event) {
+     alert('Clicked dep2');
+  }
+ var doDep3 = function(event) {
+     event.stopPropagation();
+     alert('Clicked dep3');
+  }
+ </script>
+ <style type="text/css"> .dep1 {
+    width: 200px;
+    height: 200px;
+    display: block;
+    background-color: #dcdcdc;
+ }
+ .dep2 {
+    width: 100px;
+    height: 100px;
+    display: block;
+    margin: 3px auto;
+    background-color: #ececec;
+ }
+ button {
+    display: block;
+    margin: 0 auto;
+ }
+ </style>
+
+</head>
+<body>
+ <!--  
+  event.target은 이벤트버블링의 가장 마지막에 위치한 최하위의 요소를 반환합니다. 
+  즉 클릭된 요소를 기준으로 사용하는 경우 event.target을 사용합니다. 
+  하지만 event.currentTarget의 경우 이벤트가 바인딩된 요소, 
+  해당하는 요소를 반환합니다
+  
+  <div onclick="checkTarget();">
+     <span>test</span>
+  </div>
+  
+  function checkTarget(event) {
+     var ele = event.currentTarget;
+     console.log(ele);
+  }
+  event.target  //  클릭된 span 태그를 반환
+  event.currentTarget  //  이벤트가 바인딩된 div 요소를 반환
+
+  위 예제는 간단한 1 depth의 하위 구조를 가졌지만 복잡해지는 경우 
+  event.target 만으로는 어떤 요소가 클릭되어 반환되어야하는지 그 결과가 달라질 수 있습니다. 
+  이런 경우 event.currentTarget을 활용하는 것이 더욱 편리할 것입니다.
+ -->
+  <div onclick="showmsg()" style="background-color: red">
+    <p onclick="showmsg()" style="background-color: yellow">Click Me!!</p>
+  </div>
+  
+  
+  <div class="dep1" onclick="doDep1(event);">
+      	dep1
+       <div class="dep2" onclick="doDep2(event);">
+            dep2
+            <br/>
+            <br/>
+            <button onclick="doDep3(event);">dep3</button>
+       </div>
+  </div> 
+</body>
+</html>

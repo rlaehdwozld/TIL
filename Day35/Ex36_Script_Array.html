@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+  <script>
+    //javascript 동적배열>> java 비교 >> javaScript Collection
+
+    let array = ['포도', '사과'];
+    console.log(array.toString());//toString()재정의..출력
+    console.log(array + "-default toString() 생략");
+
+    for (let i = 0; i < array.length; i++) {
+      console.log(array[i]);
+    }
+    for (let index in array) {
+      console.log(array[index]);
+    }
+    //ES6
+    for (let value of array) {
+      console.log(value);
+    }
+    //['포도','사과']
+    //동적
+    array[2] = "바나나";
+    console.log(array.toString() + "/" + array.length);
+    // ['포도','사과','바나나']
+    //권장하지 않음(가능은 함)
+    array[10] = "애플망고";//동적 데이터 추가
+    console.log(array.toString()+"/"+array.length);
+    console.log(array[9]+">>array[9] 접근");
+
+    array[9]="배";//타입 설정
+
+
+    let array2=["one","two","three"];
+    //권장하지 않아요 가능은함
+    array2.length=2;//개수를 2개로 줄인거임 자바에서는 못하는 짓
+    console.log(array2+"~~~~~~"+array2.length);
+
+    array.length=4;//늘리는 것도 가능 (쓰지마세요)
+    console.log(array2+"~~~"+array2.length);
+
+    //권장방법
+    //Array>>stack>>LIFO>>push>>pop 이뻐요(good)
+    let array3=[];
+    array3.push("aaa");
+    array3.push("bbb");
+    array3.push("ccc");
+    array3.push("ddd");
+    console.log(array3.pop());
+    console.log(array3.pop());
+    console.log(array3.pop());
+    console.log(array3.pop());
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

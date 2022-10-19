@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    let myObj={name:"john",age:30, city:"seoul"};
+    console.log(myObj);
+
+    //중요!!!! 암기하자
+    // 객체 데이터를 문자열 데이터로 바꿀 수 있는 
+    //login.jsp?name=john&age=30&city=seoul
+    let Stringobj=JSON.stringify(myObj);//point!!
+    console.log(Stringobj);//{"name":"john","age":30,"city":"seoul"}
+    console.log(typeof(Stringobj));//string
+
+    //그럼 문자열데이터도 객체 데이터로 바꿀 수 있어야지
+    //단 ! 조건 구조가 객체여야만 한다. 
+    let stringstr='{"name":"john","age":30,"city":"seoul"}';
+    console.log(stringstr);
+    console.log(typeof(stringstr)); 
+
+    let myjson = JSON.parse(stringstr);
+    console.log(myjson);
+    
+    //point
+    console.log(myjson.name);//객체라면 객체.속성명으로 접근이 가능해야한다.
+    console.log(myjson["name"]);//객체["속성명"]
+    //접근 방법 두가지
+    //1. 객체.속성명
+    //2. 객체["속성명"]
+
+    /* 
+    타입
+    index.htm , index.html
+    css > conmmon.css
+    javascript > common.js
+    json > common.jscon >> 형식(웹 타입)MIME>>application/json
+    xml > common.xml
+    */
+    let Mycars;
+    Mycars={"name":"john","age":30,"cars":[
+
+                                          {"name":"Ford","model":["Fiesta","Focus","mustang"]},
+                                          {"name":"BMW","model":["420","x4","x5"]},
+                                          {"name":"Fiat","model":["500"]}  
+                                        ] 
+                                          };
+//신입개발자 업무 
+//JSON 데이터 원하는 값을 추출 화면 이쁘게 출력
+
+
+//차량 이름>> 모델명 추출
+//Ford-Fiesta Focus Mustang
+//BMW-,,,
+//Fiat-,,,
+//개선된 for문으로 작업하세요
+for(let index in Mycars.cars){
+  console.log(Mycars.cars[index]);
+  document.write("차량이름 :"+Mycars.cars[index].name);
+
+  for(let index1 in Mycars.cars[index].model){
+    document.write("차량모델: "+Mycars.cars[index].model[index1]);
+  }
+  document.write("<hr>");
+}
+
+let Mybooks;
+    Mycars={"name":"kim","age":31,"books":[
+
+                                          {"name":"newspaper","model":["중앙","동아","한국"]},
+                                          {"name":"cartoon","model":["JJang","sss","ssssqwq"]},
+                                          {"name":"dictionary","model":["1","22","444"]}  
+                                        ] 
+                                          };
+
+for(let index in Mybooks.books){
+  document.write("책이름 :"+Mybooks.books[index].name);
+  
+  for(let index1 in Mybooks.books[index].model){
+    document.write("책모델:"+Mybooks.books[index].model[index1]);
+  }
+  document.write("<hr>");
+}
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

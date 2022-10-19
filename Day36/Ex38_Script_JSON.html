@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    //1. 배열 >> [] >>let arr=[];>>push(),pop()
+
+    //2. JSON >> {} >> let obj={};>>obj.속성명, obj.함수명
+
+    //우리가 원하는 데이터는 단순하지 않다.
+    //날씨, 영화정보, 지하철 정보데이타, 원하는 정보를 추출(open api)>> xml , json 데이터로
+    //이런 데이터는 객체와 객체, 객체 안에 배열, 배열안에 객체가 혼재...원하는 값만 추출 할 수 있어야한다.
+
+    let students=[];
+    students.push({이름:"홍길동",국어:80,영어:60});//배열의 0번째 방에 객체 json
+    students.push({이름:"아무개",국어:100,영어:80});
+    students.push({이름:"이순신",국어:50,영어:30});
+
+    //[{},{},{}]
+    //기존에 만들어진 객에체 함수를 추가할 수 있다.
+    for(let index in students){
+      students[index].getSum=function(){return this.국어+this.영어}
+      students[index].getAvg=function(){return this.getSum()/2}
+    }
+    //{이름: "홍길동",국어: 80, 영어,getSum:fuction...,getAvg:function..}
+    console.log(students);
+
+    for(let index in students){
+      console.log(students[index].이름);
+      console.log(students[index].getSum());
+      console.log(students[index].getAvg());
+    }
+
+
+  </script>
+</head>
+<body>
+  
+</body>
+</html>

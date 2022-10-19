@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="Ex35.jsp"  id="frm">
+		<fieldset>
+			<legend>주소록</legend>
+			<textarea rows="10" cols="30" name="txt" id="txt"></textarea>
+			<input type="submit" id="sub" value="전송하기">
+		</fieldset>
+	</form>
+</body>
+<script type="text/javascript">
+		let add = ["아무개","email:i7027@naver.com"];
+		
+		let frm = document.getElementById("frm");
+		
+		function addr_Search(event){
+			console.log(event.type);
+			
+			let textarea = frm.txt;
+			textarea.value = "이름/주소\n";
+			textarea.value += add[0] + "," + add[1] + "\n";
+		}
+		
+		//point
+		frm.addEventListener('submit',function(event){
+		//<input type="submit"...action="Ex35.jsp" 전송기능을 가지고 있어요
+    //원래 가지고 있는 기본 이베느트는 해제 하고 싶어요
+    //<a->event 걸어서 링크로 빠져나가지 못하게 막는 것
+    event.preventDefault();
+			addr_Search(event);
+		});
+		
+		
+</script>
+</html>

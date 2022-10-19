@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
+  <style>
+    #add-btn {
+      padding: 5px 10px;
+      border: 0;
+      background: #f80;
+      color: white;
+      border-radius: 5px;
+    }
+
+    ul {
+      padding: 0;
+      list-style-position: inside;
+    }
+
+    li {
+      border-bottom: 1px solid #999;
+      padding: 5px 0;
+    }
+
+    .active {
+      background: #abc;
+    }
+
+    /* step3: 목록 클릭 스타일 */
+  </style>
+</head>
+
+<body>
+  <h1 id='title'>할일 목록</h1>
+  <button id="add-btn">목록 추가</button>
+  <ul id='list'>
+    <li>제목 1</li>
+    <li>제목 2</li>
+    <li>제목 3</li>
+    <li>제목 4</li>
+  </ul>
+</body>
+<script>
+  let title = document.getElementById("title");
+  let list = document.getElementById("list");
+  let li = document.getElementsByTagName("li");
+  let addbtn = document.getElementById("add-btn");
+
+  //TEST
+  // console.log(title);
+  // console.log(list);
+  // console.log(li);
+  // console.log(addbtn);
+
+  function activeItem(event) {//이벤트 객체를 받아서 
+    console.log(event.target);//li
+    console.log(event.currentTarget);//ul
+
+    if (event.target.nodeName == 'LI') {
+      title.innerHTML = event.target.innerText;
+    }
+    //active가 다른데 가면 없애기위해서 꼼수를 써야한다.
+    // 모든요소의 class를 제거하고 다시 추가하는 방법
+    for(let i=0;i<event.target.parentNode.children.length;i++){
+      event.target.parentNode.children[i].removeAttribute('class');
+    }
+    event.target.setAttribute("class","active");
+  }
+  list.addEventListener("click",activeItem);
+
+  //목록추가
+  addbtn.addEventListener('click',function(){
+    let txt=prompt('제목입력');//window 객체가 가지는 내장함수
+    if(txt!=null){
+      list.innerHTML +='<li>'+txt+'</li>';
+    }
+  })
+</script>
+
+</html>

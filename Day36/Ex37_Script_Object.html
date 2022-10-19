@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script type="text/javascript">
+    /*
+
+      자바 설계도(클래스) => 재사용성
+    class Product{
+    private String carname="pony";
+    public Product(){}
+    public Product(String carname){
+    this.carname= carname;
+    }
+    public void print(){
+    System.out.println(this.carname);
+    }
+    }
+    ​
+
+    메모리 load ... (new)
+    Product p = new Product();
+    Product p2 = new Product("pony2");
+    p.print();
+    p2.print();
+
+    /////////////////////////////////////////////////////
+    javaScript >> 객체지향언어(OOP)
+    클래스 정의 3가지방법
+    1. 프로토타입 방식 :  일반적인 클래스 제작 방법
+    인스턴스마다 공통된 메서드를 공유해서 사용하는 장점 
+                        Jquery 도 prototype 방식으로 설계
+    function 클래스이름() {
+    this.프로퍼티1 = 초기값;
+    this.프로퍼티2 = 초기값;
+    }
+    
+    클래스이름.prototype.메서드1 = function() {
+    }
+    클래스이름.prototype.메서드2 = function() {
+    }
+    ​
+    var 인스턴스 = new 클래스이름(); 
+    var carObj = new Car();
+    var carObj2 = new Car();
+    var carObj3 = new Car();
+    ​
+    ​
+    ​
+    
+    
+    2. 함수 방식 : 간단한 클래스 제작 시 사용 
+    인스턴스마다 메서드가 독립적으로 만들어지는 단점
+    ** 클래스 :  function Car(){ this.name = , this.age=}
+    ** 함수 :   function car(){}
+    ​
+    function 클래스이름() {
+          this.프로퍼티1 = 초기값;
+          this.프로퍼티2 = 초기값;
+          this.메서드1 = function() {
+    ​
+          }
+    this.메서드2 = function() {
+    ​
+    }
+    }
+    ​
+    var 인스턴스 = new 클래스이름(); 
+    var carObj = new Car();
+    var carObj2 = new Car();
+    var carObj3 = new Car();
+
+
+    ​
+    여기서부터는 무조건 알아야한다!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        *****************
+    3. 리터럴 방식 : 자바슼크립트 객제 표기법 (이기종간의 데이터 호환)>JSON
+    클래스 만드는 용도는 아니며 주로 여러개의 매개변수를 그룹으로 묶어 함수의 매개변수로 보낼때
+        정의와 함께 인스턴스가 만들어지는 장점이 있음 단 인스턴스는 오직 하나
+        (초보자에게도 중요 ^^)
+        {"a":"데이터"}
+    ​
+    ​
+    4. ECMA6 버전부터 : class 키워드 제공
+    class Person {
+      constructor(name) {
+        this._name = name;
+      }
+    sayHi() {
+    console.log(`Hi! ${this._name}`);
+        }
+    }
+
+    [ javascript 객체 생성 ]
+    1.오브젝트 리터럴 방식 (객체를 만드는 방법): 클래스 생성과 동시에 객체가 만들어 져요
+    1.1 리터럴 방식 >> 제일 간단한 방법 > var obj = {}; //var objarr = [] 배열 
+    1.2 JSON 표기 : {} >> JSON: JavaScript Object Notation
+    ​
+    ex) var myObj = { "name":"John", "age":31, "city":"New York" };
+    ​
+    TIP) JSON >> XML (텍스트 기반의 형식화된 문서 제공)
+    XML :이기종간의 데이터 호환 (한 때는 서점 : xml webservice)
+    ​
+    다른 이야기 >> JSON
+    객체지향언어 장점 : 설계도 (재사용성)
+    *오브젝트 리터럴 방식 : 재사용을 지원하는 않는다 
+    *설계도를 생성과 동시에 객체 생성(장점 : 편하고 , 빠르다 )
+    *설계도를 미리 만들어 놓고 재사용하는 방식은 아니다
+    *설계도당 하나의 객체만 생성 사용 (only object)
+    ​
+    var product = {};  //Product p = new Product();
+    ​
+    var product2 = {제품명:'사과',년도:'2018',원산지:'대구'};
+
+
+    ​
+
+    var 인스턴스 ={
+        프로퍼티:초기값,
+        프로퍼티:초기값,
+        .....
+        메서드:function(){},//잘 안만든다(DATA의 성격이 강해서)
+        메서드:function(){}....
+
+      }
+
+    리터럴 방식 > 선언과 동시에 인스턴스 자동 생<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script>
+        /* 
+
+​ 자바 설계도(클래스) => 재사용성
+
+class Product{
+
+private String carname="pony";
+
+public Product(){}
+
+public Product(String carname){
+
+this.carname= carname;
+
+}
+
+public void print(){
+
+System.out.println(this.carname);
+
+}
+
+}
+
+​
+
+메모리 load ... (new)
+
+Product p = new Product();
+
+Product p2 = new Product("pony2");
+
+​
+
+p.print();
+
+p2.print();
+
+/////////////////////////////////////////////////////
+
+​
+
+javaScript >> 객체지향언어(OOP)
+
+​
+
+클래스 정의 3가지 방법
+
+​
+
+1. 프로토타입 방식 :  일반적인 클래스 제작 방법
+
+  인스턴스마다 공통된 메서드를 공유해서 사용하는 장점 
+
+                      Jquery 도 prototype 방식으로 설계
+
+​
+
+function 클래스이름() {
+
+this.프로퍼티1 = 초기값;
+
+this.프로퍼티2 = 초기값;
+
+}
+
+​
+
+클래스이름.prototype.메서드1 = function() {
+
+}
+
+클래스이름.prototype.메서드2 = function() {
+
+}
+
+​
+
+var 인스턴스 = new 클래스이름(); 
+
+var carObj = new Car();
+
+var carObj2 = new Car();
+
+var carObj3 = new Car();
+
+​
+
+​
+
+​
+
+​
+
+​
+
+2. 함수 방식 : 간단한 클래스 제작 시 사용 
+
+인스턴스마다 메서드가 독립적으로 만들어지는 단점
+
+** 클래스 :  function Car(){ this.name = , this.age=}
+
+** 함수 :   function car(){}
+
+​
+
+function 클래스이름() {
+
+this.프로퍼티1 = 초기값;
+
+this.프로퍼티2 = 초기값;
+
+this.메서드1 = function() {
+
+​
+
+}
+
+this.메서드2 = function() {
+
+​
+
+}
+
+}
+
+​
+
+var 인스턴스 = new 클래스이름(); 
+
+var carObj = new Car();
+
+var carObj2 = new Car();
+
+var carObj3 = new Car();
+
+​
+
+​
+
+​
+
+​
+
+​
+
+​
+
+    *****************
+
+3. 리터럴 방식 : 
+   클래스 만드는 용도는 아니며 주로 여러개의 매개변수를 그룹으로 묶어 함수의 매개변수로 보낼때
+       정의와 함께 인스턴스가 만들어지는 장점이 있음 단 인스턴스는 오직 하나
+      (초보자에게도 중요 ^^)
+      ("a":"데이터")
+
+​
+
+​
+
+4. ECMA6 버전부터 : class 키워드 제공
+
+class Person {
+
+constructor(name) {
+
+this._name = name;
+
+     }
+
+sayHi() {
+
+console.log(`Hi! ${this._name}`);
+
+}
+
+}
+
+​
+
+​
+
+​
+
+[ javascript 객체 생성 ]
+
+1.오브젝트 리터럴 방식 (객체를 만드는 방법): 클래스 생성과 동시에 객체가 만들어 져요
+
+1.1 리터럴 방식 >> 제일 간단한 방법 > var obj = {}; //var objarr = [] 배열 
+
+1.2 JSON 표기 : {} >> JSON: JavaScript Object Notation
+
+​
+
+ex) var myObj = { "name":"John", "age":31, "city":"New York" };
+
+​
+
+TIP) JSON >> XML (텍스트 기반의 형식화된 문서 제공)
+
+XML :이기종간의 데이터 호환 (한 때는 서점 : xml webservice)
+
+​
+
+다른 이야기 >> JSON
+
+객체지향언어 장점 : 설계도 (재사용성)
+
+*오브젝트 리터럴 방식 : 재사용을 지원하는 않는다 
+
+*설계도를 생성과 동시에 객체 생성(장점 : 편하고 , 빠르다 )
+
+*설계도를 미리 만들어 놓고 재사용하는 방식은 아니다
+
+*설계도당 하나의 객체만 생성 사용 (only object)
+
+​
+
+​
+
+var product = {};  //Product p = new Product();
+
+​
+
+var product2 = {제품명:'사과',년도:'2018',원산지:'대구'};
+
+​
+
+var 인스턴스 ={
+
+프로퍼티:초기값,
+
+프로퍼티:초기값,
+
+.....
+
+메서드:function(){},
+
+메서드:function(){}....
+
+}
+
+​
+
+​
+
+​
+
+리터럴 방식 > 선언과 동시에 인스턴스 자동 생성
+
+var 인스턴스 = {}
+
+특징 : 생성자 존재하지 않는다.
+
+프로퍼티와 메서드만 정의 가능
+
+단점 : 객체 하나 생성(재사용성 없다) 
+
+접근방법 : 인스턴스이름.자원 >> product2.제품명 
+
+​
+
+*/
+
+//자바랑 비교하자면!?
+//
+
+let product = { 제품명:'사과', 년도:'2000' , 원산지:'대구' };
+console.log(product);
+console.log(product.제품명);
+console.log(product.원산지);
+console.log(product.toString());
+
+//객체{}  >>  리터럴 객체  >> JSON
+let Person = {
+        name: "홍길동",
+        addr: "서울시 강남구 역삼동",
+        eat: function(food){
+            document.write(this.name + " / " + this.addr + " / " + food + "냠냠")
+        }
+};
+document.write("<hr>");
+Person.eat("사과"); // eat함수 호출
+
+//1. 속성 제거 기능
+delete(product.년도);
+console.log(product);
+
+for(let key in product){
+    console.log("key: " + key);
+    console.log(product[key]);
+}
+
+for(let key in Person){
+    console.log("key :" + key + "=" + Person[key]);
+}
+
+//JSON (자바스크립트로 객체를 표기하는 방법)
+//XML or JSON 데이터를 가공해서 전달 ...
+//OPEN API (외부 API) >> (공공데이터: xml, json: 서울시공공데이터, 대법원 판례, 날씨 정보)
+//KEY POINT: 제공받은 xml or json 객체를 원하는 형태로 가공작업 필수 (화면출력)
+//2차 프로젝트 강제사항 : 최소 2개 이상 외부(OPEN) API 데이터 가공 > chart화 (시각화)
+
+let Member = {};
+Member.name = "hong"; // {name: "hong"}
+console.log(Member);    
+console.log(Member.name);
+
+Member.age = 100;
+
+Member.print = () => {
+    document.write("<br>" + this.name + " / " + this.age + "<br>");
+}
+Member.print();
+
+//JSON 객체를 수 많은 데이터 표현
+//POINT: 객체가 객체를 가질 수 있다, 객체가 배열을 가질 수 있다.
+//JAVA: class Member {Car car; List<Person> list;}
+let Grade = {
+    "list": {"hong":10,"kim":20,"park":30},
+    "show": () => {
+        for(let key in this.list) { //객체 key (속성값)
+            document.write(key + ":" + this.list[key] + "<br>");
+        }
+    }
+};
+
+Grade.show();
+document.write("<hr>");
+
+let listobj = Grade.list; // 객체.속성명을 했더니 return
+document.write(listobj.kim);
+document.write("<br>");
+for (let key in listobj){
+    document.write(key + " : " + listobj[key] + "<br>");
+}
+    </script>
+</head>
+<body>
+    
+</body>
+</html>성
+    var 인스턴스 = {}
+    특징 : 생성자 존재하지 않는다.
+    프로퍼티와 메서드만 정의 가능
+    단점 : 객체 하나 생성(재사용성 없다) 
+    접근방법 : 인스턴스이름.자원 >> product2.제품명 
+    ​
+    */
+    
+    let product={제품명:'사과',년도:'2000',원산지:'대구'};
+    console.log(product);
+    console.log(product.제품명);
+    console.log(product.원산지);
+    console.log(product.toString());
+  
+    //객체{}>>리터럴>>JSON
+    let Person={
+        name : "김동재",
+        addr : "서울시 강남구 역삼동",
+        eat :function(food){
+          document.write(this.name+"/"+this.addr+"/"+this.food+"냠냠")
+        } 
+    };
+    document.write("<hr>");
+    Person.eat("사과");//eat함수 호출
+
+    //1.속성 제거 가능
+    delete(product.년도);
+    console.log(product);
+
+    for(let key in product){
+      console.log("key:"+key);
+      console.log(product[key]);
+    }
+    for(let key in Person){
+      console.log("key"+key+"="+Person[key]);
+
+    }
+    let Member={};
+    Member.name="hong";//{name:"hong"}
+    console.log(Member);
+    console.log(Member.name);
+
+    Member.age=100;
+
+    Member.print=function(){
+      document.write("<br>"+this.name+"/"+this.age+"<br>");
+    }
+    Member.print();
+    //json (자바스크립트로 객체를 표기하는 방법)  
+    //xmlor json데이터를 가공해서 전달...
+    //open API(외부 API)>>(공공데이터 : xml, json: 서울시 공공데이터, 대법원 판례, 날씨정보)
+    //KEY POINT : 제공 받은 xml or json 객체를 원하는 형태로 가공 작업을 해야한다.(화면 출력)
+    //2차 프로젝트 강제사항 : 최소 2개 이상 외부 OPEN API 데이터 가공> 차트화
+
+    
+  </script>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <!--  <p id="demo">  </p> -->
+  <input type="text" id="demo">
+  <button onclick="myFunc()">Test Input</button>
+  <p id="p01"></p>
+</body>
+<script>
+  function myFunc() {
+    let message, x;
+    message = document.getElementById("p01");
+    message.innerHTML = "";
+
+    x = document.getElementById("demo").value;
+    try {
+      if (x == "") throw "empty";
+      if(isNan(x)) throw "not a number";
+      X=Number(x);
+      if(x<5)throw"too low";
+      if(x>10)throw"too high";
+    } catch (err) {//내부적으로 생성된 예외 객체의 주소를 받는다.
+      message.innerHTML = "input is " + err;
+    } finally {
+      document.getElementById("demo").value = "";
+    }
+  }
+
+  /*   try{
+      add("welcome")
+    }catch(err){
+      document.getElementById("demo").innerHTML=err.message;
+    } */
+</script>
+
+</html>

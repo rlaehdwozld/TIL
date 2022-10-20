@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+    <script>
+        
+        const Key = "f5eef3421c602c6cb7ea224104795888";
+        let getDt = ""; // 입력받을 날짜
+        let requestUrl = "";
+
+        // 날짜 가져오는 함수
+        function getDate(){
+            getDt = $(".date").val()
+            getDt = getDt.replaceAll("-", "")
+        }
+        
+        // 해당 날짜 영화 가져오는 함수
+        function getMovie() {
+            getDate(); // 날짜 가져오기
+            requestUrl = `http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=${Key}&targetDt=${getDt}&`;
+            $.getJSON(requestUrl, (data) => { 
+            let str = "<table class='table table-hover'><th><td>제목</td><td>관객수</td><td>오픈일자</td>" 
+            $(data).each(
+                    function() {
+                        for(var i = 0 ; i < this.boxOfficeResult.dailyBoxOfficeList.length; i++){
+                            str += "<tr class='p-2'><td class='text-end'>"+this.boxOfficeResult.dailyBoxOfficeList[i].rank + "</td><td>" + this.boxOfficeResult.dailyBoxOfficeList[i].movieNm + "</td><td>"+this.boxOfficeResult.dailyBoxOfficeList[i].audiCnt+"</td><td>" + this.boxOfficeResult.dailyBoxOfficeList[i].openDt+"</td></tr>";
+                        }
+                    });
+            str += "</th></table>"
+                $("#movieDataDiv").html(str);
+            })
+        };
+                
+                
+        
+    </script>
+</head>
+<body>
+  <div class="row form-header">
+    <input type="date" class="date"> <!-- 날짜 선택 폼 -->
+    <button onclick="getMovie()" >영화정보 가져오기</button> <!-- 제출버튼 -->
+</div>
+<div id="movieDataDiv" class="row form-body"></div> <!-- 가져온 정보가 들어갈 div -->
+</body>
+</html>

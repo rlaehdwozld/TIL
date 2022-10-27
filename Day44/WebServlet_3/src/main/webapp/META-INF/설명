@@ -1,0 +1,28 @@
+1. Model2 기반의 MVC 패턴 적용 웹 프로젝트
+
+Modell1>> 요청을 JSP 받아서 처리
+
+Model2>> 요청을 serlvlet 받아서 처리
+
++MVC
+
+Model : java 클래스 > DTO, DAO(JDBC)
+VIEW : html or jsp (EL & JSTL)
+Controller : servlet(웹용 자바 파일)
+
+--------------------------------------------------------
+
+JSP없던 시절>> Servlet 모든 것 >> UI 담당
+
+DB 작업 
+
+
+
+create table memo(
+id VARCHAR2(20) not null,
+email varchar2(20) not null,
+content varchar2(100)
+);
+desc memo;
+
+1. 드라이버 : ojdbc6.jar

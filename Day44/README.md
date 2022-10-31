@@ -40,83 +40,97 @@ var="msg" 자바에서는 Exception msg
 
 ### jstl 포맷
 
-```jsp
+```html
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<%@page import="java.util.Date"%>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <%@page import="java.util.Date"%> <%@ taglib prefix="c"
+    uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
+    uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <meta charset="UTF-8" />
+        <title>JSTL Fmt 포맷관련</title>
+      </head>
+      <body>
+        <h3>숫자관련</h3>
+        변수선언 : <c:set var="price" value="1000000"></c:set><br />
+        변수값 출력:${price}<br />
 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>JSTL Fmt 포맷관련</title>
-</head>
-<body>
- <h3>숫자관련</h3>
- 변수선언 : <c:set var="price" value="1000000"></c:set><br>
- 변수값 출력:${price}<br>
+        <fmt:formatNumber value="${price}" type="number" /><br />
+        <fmt:formatNumber
+          value="50000000"
+          type="currency"
+          currencySymbol="$"
+        /><br />
+        <fmt:formatNumber value="0.13" type="percent" />
+        변수에 설정 <br />
+        <fmt:formatNumber value="123456789" pattern="###,###,###" var="pdata" />
+        변수에 설정한 값 : ${pdata}<br />
 
- <fmt:formatNumber value="${price}" type="number" /><br>
- <fmt:formatNumber value="50000000" type="currency" currencySymbol="$" /><br>
- <fmt:formatNumber value="0.13"     type="percent"/>
- 변수에 설정 <br>
- <fmt:formatNumber value="123456789" pattern="###,###,###" var="pdata" />
- 변수에 설정한 값 : ${pdata}<br>
-
- <hr>
- <h3>날짜 관련 format</h3>
- 변수선언 : <c:set var="now" value="<%= new Date() %>" /><br>
- 변수값 : ${now}<br>
- Basic Date : <fmt:formatDate value="${now}" type="date" /><br>
- DateStyle(full) : <fmt:formatDate value="${now}" type="date" dateStyle="full" /><br>
- DateStyle(short) : <fmt:formatDate value="${now}" type="date" dateStyle="short" /><br>
- 시간:<fmt:formatDate value="${now}" type="time"/><br>
- 날짜 + 시간:<fmt:formatDate value="${now}" type="both"/><br>
- 혼합:<fmt:formatDate value="${now}" type="both" dateStyle="full" timeStyle="full" /><br>
-    혼합2:<fmt:formatDate value="${now}" type="both" dateStyle="short" timeStyle="short" /><br>
-</body>
-</html>
-
-</body>
+        <hr />
+        <h3>날짜 관련 format</h3>
+        변수선언 : <c:set var="now" value="<%= new Date() %>" /><br />
+        변수값 : ${now}<br />
+        Basic Date : <fmt:formatDate value="${now}" type="date" /><br />
+        DateStyle(full) :
+        <fmt:formatDate value="${now}" type="date" dateStyle="full" /><br />
+        DateStyle(short) :
+        <fmt:formatDate value="${now}" type="date" dateStyle="short" /><br />
+        시간:<fmt:formatDate value="${now}" type="time" /><br />
+        날짜 + 시간:<fmt:formatDate value="${now}" type="both" /><br />
+        혼합:<fmt:formatDate
+          value="${now}"
+          type="both"
+          dateStyle="full"
+          timeStyle="full"
+        /><br />
+        혼합2:<fmt:formatDate
+          value="${now}"
+          type="both"
+          dateStyle="short"
+          timeStyle="short"
+        /><br />
+      </body>
+    </html>
+  </body>
 </html>
 ```
 
 ### jstl 함수
 
-```jsp
+```html
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt"  uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn"  uri="http://java.sun.com/jsp/jstl/functions" %>
+pageEncoding="UTF-8"%> <%@ taglib prefix="c"
+uri="http://java.sun.com/jsp/jstl/core" %> <%@ taglib prefix="fmt"
+uri="http://java.sun.com/jsp/jstl/fmt" %> <%@ taglib prefix="fn"
+uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<!--
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <!--
 https://www.hscripts.com/tutorials/jsp/jstltags/function-tag.php
 -->
-<c:set var="str" value="oracle" />
-변수값 출력: ${str}<br>
+    <c:set var="str" value="oracle" />
+    변수값 출력: ${str}<br />
 
-<h3>함수 적용({안에서})</h3>
-대문자 : ${fn:toUpperCase(str)}<br>
-문자열길이 : ${fn:length(str)}<br>
-치환 : ${fn:replace(str,'a','AAAA')}<br>
-</body>
+    <h3>함수 적용({안에서})</h3>
+    대문자 : ${fn:toUpperCase(str)}<br />
+    문자열길이 : ${fn:length(str)}<br />
+    치환 : ${fn:replace(str,'a','AAAA')}<br />
+  </body>
 </html>
 ```
 
@@ -676,7 +690,7 @@ kr.or.kosa.utils
    이 녀석을 controller 사용
 1. 디자인 파일(jsp) .. ui 폴더 받은 다음에 해도 되고 같이 해도 되고....
 
-**\*\***지금의 방법은 요청당 servlet 하나씩 만들기****\*\*\*****
+**\*\***지금의 방법은 요청당 servlet 하나씩 만들기\***\*\*\*\*\*\***
 
 memo.html 부터 시작입니다.  
 -> 글 입력하고 전송 버튼 클릭  

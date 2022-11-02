@@ -688,8 +688,64 @@ kr.or.kosa.utils
 
 ### Model2 기반의 프로젝트 전체적인 연습해보기(url방식)
 
-###
+Controller 변동 부분
+
+```java
+
+	String requestURI= request.getRequestURI();
+	String contextPath = request.getContextPath();
+	String urlcommand = requestURI.substring(contextPath.length());
+
+	System.out.println("requestURI" +requestURI);
+	System.out.println("contextPath" +contextPath);
+	System.out.println("urlcommand" +urlcommand);
+
+	if(urlcommand.equals("/register.do")) {
+			//회원가입 페이지(VIEW)
+			//VIEW만 전달
+			viewpage="/WEB-INF/views/register/register.jsp";
+		}else if(urlcommand.equals("/registerok.do")) {
+			//회원가입 처리(DB작업)
+			//입력 데이터 >> DB 연결>> insert >> 여부> 처리
+			int id=Integer.parseInt(request.getParameter("id"));
+			String pwd= request.getParameter("pwd");
+			String email= request.getParameter("email");
+      ...
+```
+
+register.jsp
+
+```jsp
+<form action="${pageContext.request.contextPath}/registerok.do" method="POST">
+ID:<input type="text" name="id" placeholder="id입력" required="required"><br>
+PWD:<input type="password" name="pwd" placeholder="pwd입력"required="required"><br>
+EMAIL:<input type="text" name="email" placeholder="email입력"required="required"><br>
+<input type="submit" value="회원가입">
+</form>
+```
+
+index.html
+
+```html
+<body>
+  <h3>회원 가입 하기</h3>
+  <!--command 방식으로 처리  -->
+  <!-- 	<a href="register.do?cmd=register">회원가입</a>
+ -->
+  <a href="register.do">회원가입</a>
+  <a></a>
+</body>
+```
+
+![](2022-11-01-09-04-28.png)
+![](2022-11-01-09-04-49.png)
+![](2022-11-01-09-05-16.png)
+
+### 조별 과제
+
+DB
+![](2022-11-01-09-11-33.png)
 
 교재 p666
 
-##
+다음날로 미뤄짐.

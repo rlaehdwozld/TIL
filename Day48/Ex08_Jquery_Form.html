@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    $(function(){
+      //form 안에 요소들을 jquery....
+      $('#txtname').val("hong");
+      console.log($('#txtname').val("hong"));
+
+      //1. radio 기본값 설정 하기(checked)속성
+      $("input:radio").val(['M']);//F값을 가진 요소 선택 checked
+      //value M,F 로 한다는 것은>> checked 하겠다는 뜻
+
+      console.log($('input:radio').val());//여러개의 radio 있으면 처음 만나는 것
+      console.log($('input:checked').val());
+
+      //여러개의 라디오가 있으면
+      console.log($('input:radio[name=gender]:checked').val());
+
+      //select
+      // 단일 선택
+      console.log($('#isF').val());//선택된 option 태그의 value값을 가져온다.
+      $('#isF').val('oracle');//선택되어진다.(selected와 동일한 역할)
+
+      //다중선택이 가능한 select 태그
+      $('#isF2').val(['java','oracle']);
+
+      //btnok 클릭하면
+      //isF2 태그에 선택된 요소의 값을 모두 출력하세요(hint: array)
+      //let data=$('#isF2').val();
+      //console.log($('#isF').val());
+      $('#btnok').click(function(){
+        const data=$('#isF2').val();
+        console.log(data);
+        for(let index in data){
+          console.log("value :"+data[index]);
+        }
+      });
+    });
+
+ // input 태그 이면서 속성이 submit인 요소가 있는지 확인
+ if ($('#myform').children().is('input:submit')) {
+            console.log('true');
+         } else {
+            console.log('false');
+         }
+  </script>
+</head>
+</head>
+<body>
+  Textbox : <input type="text" id="txtname">
+	<br>
+	
+	RadioButton : Checked 속성
+	<input type="radio"  name="gender" value="M">남
+	<input type="radio"  name="gender" value="F">여
+	<br>
+	
+	
+	Dropdownlist(select 태그)
+	<select id="isF">
+		<option value="java">자바</option>
+		<option value="jsp">웹</option>
+		<option value="oracle">오라클</option>
+	</select>
+	<br>
+	Dropdownlist(select 태그)
+	<select id="isF2" multiple="multiple" size="3">
+		<option value="java">자바</option>
+		<option value="jsp">웹</option>
+		<option value="oracle">오라클</option>
+	</select>
+	<br>
+	<input type="button" value="확인" id="btnok">
+	<br>
+	<div id="myform">
+		submit button : <input  type="submit" value="전송">
+	</div>
+</body>
+</html>

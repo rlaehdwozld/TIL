@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+ /* 
+ jquery 이벤트 (on,off) :이벤트 추가, 제거>> ** parameter JSON 객체 형식 지원
+ 2.x.x버전에서 >bind(), unbind()
+ 3.x.x버전부터> on(), off() //addeventlistener, removeventlistener 와 비슷한 역할
+ */
+    $(function(){
+      $('p').on(
+        {
+          mouseleave:function(){$(this).css('background-color','red')},
+          click:function(){$(this).css('background-color','green')},
+          mouseenter:function(){$(this).css('background-color','blue')}
+        }
+      );
+      $('button').click(function(){
+        $('p').off('click');//제거
+      });
+    });
+  </script>
+</head>
+
+<body>
+<p>on함수를 사용해서 다중 이벤트 처리하기</p>
+<hr>
+<button>이벤트 제거</button>
+</body>
+
+</html>

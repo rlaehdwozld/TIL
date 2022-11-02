@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<style type="text/css">
+		table , tr , td {
+			border: 1px solid blue;
+			border-collapse: collapse;
+		}
+	</style>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		/*
+			remove() - Removes the selected element (and its child elements)
+			자기자신삭제(자식제거)
+			empty() - Removes the child elements from the selected element
+			자식제거
+		*/
+		$(function(){
+			$('#btncreate').click(function(){
+				let row = $('#row').val();
+				let col = $('#col').val();
+				
+				let startable ="<table>";
+					for(let i = 0 ; i < row ; i++){
+						startable+="<tr>";
+						for(let j = 0 ; j < col ; j++){
+							startable+="<td>(" + i + ")행(" + j + ")열</td>";
+						}
+						startable+="</tr>";
+					}
+				
+				startable+="</table>";
+				console.log(startable);
+				$('#divtable').append(startable); //가장 마지막에 생성한 요소가 뒤에 ...보장
+			});
+			
+			$('#btndelete').click(function(){
+				//$('#divtable').remove(); // 자기자신도 삭제(모든 자식 삭제)
+				$('#divtable').empty(); //선택된 태그의 자식요소 삭제
+			});
+			
+			$('#btnmenu').click(function(){
+				//method chain : 함수().함수().함수
+				//chain 지원하지 않아요  함수(함수(함수()))
+				$('#menu').clone().appendTo("#submenu");  //appendTo(target)
+				//$('#menu').clone().prependTo("#submenu");
+			});
+		});		
+	</script>
+</head>
+<body>
+	<span id="lbldisply">Table Create</span>
+	<input type="text" id="row">행
+	<input type="text" id="col">열
+	<input type="button" value="동적생성" id="btncreate">
+	<input type="button" value="동적제거" id="btndelete">
+	
+	<div id="divtable">
+	
+	</div>
+	
+	<hr>
+	<input type="button" id="btnmenu" value="변경">
+	<div id="menu">HOME</div>
+	<div id="content">CONTENT</div>
+	<div id="submenu">SUBMENU</div>
+</body>
+</html>

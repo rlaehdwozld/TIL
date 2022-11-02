@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+function scriptFunc(){
+  const arrayobj=[];
+
+
+  /* 
+  101 th 홍길동 10
+  102 th 김유신 20
+  103 th 유관순 30
+
+  객체배열
+  [{},{},{}]
+  ex){th:101th, name:홍길동 , age:10} 형식 객체
+  arrayobj.push({});
+  */
+ $('table>tbody>tr').each(function(index,element){
+//   console.log(element);
+//   console.log($(element).children().eq(0).text());
+    arrayobj.push(
+      {
+        th :$(element).children().eq(0).text(),
+        name :$(element).children().eq(1).text(),
+        age :$(element).children().eq(2).text()
+      }
+    );
+    console.log(arrayobj);
+    //2. 결과 배열을 순수한 자바스크릡트 for문을 써서(일반 for문)
+    // 그 결과를 append시키자.
+    let output="";
+      for(let i ; i<arrayobj.length;i++){
+        output+=arrayobj[i].th+","+
+                arrayobj[i].name+","+
+                arrayobj[i].age;
+      }
+    //3. 결과 배열을 순수한 자바스크릡트 개선된 for문을 써서 (console.log())
+    for(const index in arrayobj){
+      console.log(arrayobj[index].th);
+      console.log(arrayobj[index].name);
+      console.log(arrayobj[index].age);
+ }
+
+    //4. jquery each문을 통해서 출력()
+    //그 결과를 display2에 append 하세요
+    $.each(arrayobj,function(index,obj){
+      $('#display2').append(obj.th+","+obj.name+","+obj.age)
+    })
+  });
+
+}
+</script>
+</head>
+<body>
+  <table>
+		<thead>
+			<tr>
+				<td>기수</td><td>이름</td><td>번호</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>101th</td><td>홍길동</td><td>10</td>
+			</tr>
+			<tr>
+				<td>102th</td><td>김유신</td><td>20</td>
+			</tr>
+			<tr>
+				<td>103th</td><td>유관순</td><td>30</td>
+			</tr>
+		</tbody>
+	</table>
+	<p>
+		<button onclick="scriptFunc()">함수호출</button>
+	</p>
+	<div id="display"></div>
+	<div id="display2"></div>
+</body>
+</html>

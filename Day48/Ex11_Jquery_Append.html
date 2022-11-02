@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <script>
+    /* 
+    - append() - Inserts content at the end of the selected elements
+    - prepend() - Inserts content at the beginning of the selected elements
+    - after() - Inserts content after the selected elements
+    - before() - Inserts content before the selected elements
+
+    <p>A</p> >> B append()=><p>AB</p>=>C append()=><p>ABC</p>
+    <p>A</p> >> B prepend()=><p>BA</p>=>C prepend()=><p>CBA</p>
+    <p>A</p> >> B after()=><p>A</p>B
+    <p>A</p> >> B before()=>B<p>A</p>
+
+    태그 안쪽 : prepend, append
+    태그 바깥쪽 : before, after
+    */
+   $(function(){
+$('#btn1').click(function(){
+  $('p').append("<b>append text</b>");
+});
+$('#btn2').click(function(){
+  $('p').prepend("<b>prepend text</b>");
+});
+
+
+
+      });
+
+  </script>
+</head>
+<body>
+  <p>This is a paragraph.</p>
+	<p>This is another paragraph.</p>
+
+	<ol>
+	  <li>List item 1</li>
+	  <li>List item 2</li>
+	  <li>List item 3</li>	  
+	</ol>
+
+	<button id="btn1">Append text</button>
+	<button id="btn2">prepend list items</button>
+
+</body>
+</html>

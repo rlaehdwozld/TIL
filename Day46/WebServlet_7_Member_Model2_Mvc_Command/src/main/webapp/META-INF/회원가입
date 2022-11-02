@@ -1,0 +1,73 @@
+1. 회원테이블 생성하기
+create table mvcregiter(
+id number constraint pk_mvcregiter_id primary key,
+pwd varchar2(20) not null,
+email varchar2(50) not null
+
+);
+
+desc mvcregiter;
+
+>>웹 프로젝트 생성
+>>연결 테이스 (DBCP) >> ojbc6.jar, context.xml, 연결.jsp>>Test END
+
+Model2 mvc 패턴 작업
+
+Model
+POJO(순수한 자바 코드)
+	1. dto 생성하기>DB 가 가지고 있는 테이블과 같은 구조 클래스 생성>gettter, setter 구현
+	2. DB연결 (Pool)> DAO> 최소한 CRUD함수 (전체조회, 조건조회, 삽입, 삭제, 수정+알파(LIKE)) 
+
+
+Service 단... 나중에 한다.
+ 
+ View
+	 1. html or jsp  둘의 차이는 ( UI 데이터 출력 유무)>Boot>include> 모든 페이지> JSP
+	 2. EL & JSTL>Server에서 데이터를 담아서 (request) > forward> 그 request 객체...
+	 ex) ${requestScope.list} or ${requestScope.id}>>출력(JSTL)
+	 3. JSP 보안적인 요소에 대해서 처리 > WEB-INF 폴더에 넣는다. >>views>member or admin or board > jsp관리
+	 4. ajax(비동기 처리)>xmlHttpRequest
+ 
+ Controller
+ 방법!
+	 1. 요청마다 Controller 생성하기( Servlet 생성)
+		 1.1 write>/write > servletWrite
+		 1.2 list>/list> servletList
+ 
+	 2. 요청마다 Controller 생성하지 말고 1개만 생성(Servlet 생성)
+		 2.1 FrontController>> Servlet 1개만 만들고( 1개가 모든 요청 판단) > 판단의 근거는 
+		 2.1.1 판단의 근거 
+		 	1. command 방식 : 글쓰기( Servlet.do?cmd=write), 글 목록 보기(servlet.do?cmd=list)
+		 		if(cmf.equals("write"){글쓰기 작업 수행}
+		 	
+		 	2. url 방식 : 글쓰기(write.do?id=kglim&pwd=1004), 글목록보기(list.do)>> url 주소로 요청을 판단
+	 			주의) url 패턴>> *.do
+ 	
+ 	------------------------------------------------------------------------------------------
+ 	
+ 	-package 구성(관리가 편하다..)
+ 	-도메인 구성
+ 	
+ 	기본 구조
+ 	kr.or.kosa.dto
+ 	kr.or.kosa.dao
+ 	kr.or.kosa.controller
+ 	kr.or.kosa.utils
+ 	
+ 	업무별 Domain별 구성을 한다면
+ 	kr.or.kosa.member.dto
+ 	kr.or.kosa..memberdao
+ 	kr.or.kosa.member.controller
+ 	kr.or.kosa.member.utils
+ 	
+ 	kr.or.kosa.admin.dto
+ 	kr.or.kosa.admin.dao
+ 	kr.or.kosa.admin.controller
+ 	kr.or.kosa.admin.utils
+ 	
+ 	kr.or.kosa.board.dto
+ 	kr.or.kosa.board.dao
+ 	kr.or.kosa.board.controller
+ 	kr.or.kosa.board.utils
+ 	
+ 	

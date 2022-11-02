@@ -1,0 +1,73 @@
+1. Model2 기반의 MVC 패턴 적용 웹 프로젝트
+
+Modell1>> 요청을 JSP 받아서 처리
+
+Model2>> 요청을 serlvlet 받아서 처리
+
++MVC
+
+Model : java 클래스 > DTO, DAO(JDBC)
+VIEW : html or jsp (EL & JSTL)
+Controller : servlet(웹용 자바 파일)
+
+--------------------------------------------------------
+
+JSP없던 시절>> Servlet 모든 것 >> UI 담당
+
+DB 작업 
+
+
+
+create table memo(
+id VARCHAR2(20) not null,
+email varchar2(20) not null,
+content varchar2(100)
+);
+desc memo;
+
+1. 드라이버 : ojdbc6.jar
+------------------------------------------------------
+
+
+
+Model
+
+
+View
+Controller
+
+패키지 구조 정의
+kr.or.it.kosa.dto
+kr.or.kosa.dao
+kr.or.kosa.controller
+kr.or.kosa.service
+kr.or.kosa.utils
+
+1. DB >> Table>> memo//일반적으로 dto를 먼저 만드는게 편한다.
+
+1. dto
+2. db(연결)
+3. dao
+이 녀석을 controller 사용
+4. 디자인 파일(jsp) .. ui 폴더 받은 다음에 해도 되고 같이 해도 되고....
+
+******지금의 방법은 요청당 servlet 하나씩 만들기***********
+
+memo.html 부터 시작입니다.
+-> 글 입력하고 전송 버튼 클릭
+->http://localhost:8090/WebServlet_4/MemoServlet
+->요청들어가면 MemoServlet.java가 실행되요
+
+글쓰기가 성공하면 
+스크립트에서 memolist.java로 보낸다.
+원칙적으로는 하나의 servlet 을 만들어서 Front 역할을 하게 되어
+cmd = list 목록
+cmd= insert 글쓰기 하여야 하는데
+
+현재는 연습으로 요청당 하나씩 servlet을  생성하였습니다.
+
+ex) 
+글쓰기 -> writeServlet
+목록보기->listServlet
+등등
+

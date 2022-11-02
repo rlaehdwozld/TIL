@@ -1,0 +1,7 @@
+
+ajax : Ex06_EmpSearch를 통해서 사번을 제공해서 비동기로  UI가 디자인된 페이지를 받아 화면에 출력
+
+이것을 서블릿으로 바꾸어라
+
+1. EmpSearch.jsp (비동기로 요청 보내요) -> Servlet -> forward(ui.jsp) -> 비동기 resonseText
+ 	-> EmpSearch 가공

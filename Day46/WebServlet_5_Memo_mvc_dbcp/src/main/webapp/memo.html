@@ -1,0 +1,128 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		/*
+			비동기를 이용하여 (xmlHttpRequest) id 검증하세요
+			window.onload 시에 button에 click 추가하고 (addEventListener)
+		    입력한 id값을 가지고 server 로 비동기 요청
+		    
+		    http://192.168.0.26:8090/WebServlet_4_Memo_mvc/MemoId?id=kglim
+		*/
+		window.onload = function(){
+			 document.getElementById("message").addEventListener("click",function(){
+				 let data =document.getElementById("id").value;
+				 //senddata(data)
+			      console.log(data);
+			      sendData(data);
+			 });
+		}
+		
+		let httpReq=null;
+		
+		function getInstance(){
+			  if(window.XMLHttpRequest){
+				  httpReq = new XMLHttpRequest(); //현재 브라우져 XMLHttpRequest 내장
+			  }else if(window.ActiveXObject){ //IE6 이하   //지금 필요없어요
+				  httpReq = new ActiveXObject("Msxml2.XMLHTTP");
+			  }else{
+				 throw new Error("AJAX 지원하지 않습니다"); 
+			  }
+			return httpReq;  
+		}
+		function handlerStateChange(){
+			 if(httpReq.readyState == 4){ //1. 서버에서 응답이 왔다면
+				 if(httpReq.status >= 200 && httpReq.status < 300){
+					 //개발자 마음 (가공)
+					 //서버가 비동기로 클라이언트 줄 수 있는  Data
+					 //1. Text (text, html , script , css , json)  >> responseText
+					 //2. xml                                      >> responseXML
+					    console.log(httpReq.responseText);
+		  				let check = httpReq.responseText.trim();
+		  				
+		  				if(check === "false"){
+		  					alert("사용불가");
+		  					document.getElementById("id").value = "";
+		  				}else{
+		  					alert("사용가능");
+		  				}
+				 }else{
+					 alert("status Text : " + httpReq.status);
+				 }
+			 }
+		}
+		function sendData(data){
+			httpReq = getInstance();
+			httpReq.onreadystatechange = handlerStateChange;  // x >> ()
+			httpReq.open("POST","MemoId?id="+data); //<form 태그 구성 method=  action=
+			httpReq.send(); // form submit 버튼 클릭
+		}
+	</script>
+</head>
+<body>
+<div style="margin-top:70px;"></div> 
+<!--  html 파일  action="MemoServlet"  -->
+<form name="f" action="MemoServlet" method="get"> 
+ <div align="center"> 
+    <table width="600" border="0" cellpadding="7" > 
+        <tr align="center" bgcolor="gold" height="50"> 
+            <td colspan="2"> 
+                <font size="4" color="#0033CC" face="굴림체"> 
+                <b> 
+                   Servlet Memo
+                </b> 
+                </font> 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center" > 
+                <b>ID</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" name="id" maxlength="10"  id="id"> 
+                <input type="button" value="ID확인" id="message">
+            </td> 
+        </tr>     
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>EMAIL</b> 
+            </td> 
+            <td> 
+                <input type="text" size="40" name="email" maxlength="60" > 
+            </td> 
+        </tr> 
+        <tr> 
+            <td width="25%" align="center"> 
+                <b>MEMO</b> 
+            </td> 
+            <td> 
+                <textarea name="content" cols="50" class="box2"></textarea> 
+            </td> 
+        </tr> 
+        <tr bgcolor="gold"> 
+            <td colspan="2" align="center" class="c2"> 
+                <input type="submit" value="전송" >
+                <input type="reset" value="취소"> 
+            </td> 
+        </tr> 
+     
+    </table> 
+  
+  
+ </div>
+</form>
+<hr>
+<a href="MemoList">목록보기</a> 
+ <!--  
+ http://localhost:8090/WebServlet_4_Memo_mvc/MemoList
+ -->
+</body>
+</html>
+
+
+
+
+

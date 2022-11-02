@@ -1,0 +1,138 @@
+Tomcat7.0 서버에 있는 Jar 복사 
+-tomcat-dbcp 파일을 사용해서 DBCP
+
+​
+2. WEB-INF > lib >
+- ojdbc6.jar
+- tomcat-dbcp.jar
+
+3.Tomcat 설정파일인 context.xml 파일
+-META-INF > context.xml
+
+만약에 [모든 프로젝트에서 공통]으로 사용하고 싶다면
+★★★★★★★★ Tomcat9.0 서버가 가지고 있는 context.xml 파일에 
+연결설정 및 pool 옵션 설정을 하면 됩니다
+
+현재 프로젝트에서 설정하기 위해서 
+-META-INF > context.xml 작업 실행
+(자바에서 설정관련 파일을 저장하는 폴더)
+------------------------------------------------------
+context.xml 구성하기
+
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+<!-- 
+Resource  커넥션풀을 만드는 기본 설정 (어떤DB , 계정을 가지고 접속 설정)
+<Resource
+auth="Container"  
+driverClassName="oracle.jdbc.driver.OracleDriver"
+maxTotal="20"  //커넥션 객체의 최대 갯수  (default 8)
+maxIdle="20"   //사용하지  않는 idle(대기)상태의 최대 수 
+maxActive="20"  //DataSource로부터 꺼낼 수 있는 커넥션 최대 개수 기본값 : 8개
+name="jdbc/myoracle"  // 사용자가 지정하는 임의의 이름 
+type="javax.sql.DataSource" 
+url="jdbc:oracle:thin:@127.0.0.1:1521:orcl"  //원격접속의 경우 반드시 @로 설정한다. 
+username="scott"   //연결한 db 사용자 이름
+password="tiger"   // 연결한 db의 비밀번호 
+/>
+			  password="1004" 
+			  username="kosa" 
+  url="jdbc:oracle:thin:@192.168.0.218:1521:XE"
+    name="jdbc/oracle" />
+ -->
+	<Resource maxWait="-1" 
+			  maxIdle="20" 
+			  maxTotal="20" 
+			  maxActive="20"
+			  password="1004" 
+			  username="kosa" 
+			  url="jdbc:oracle:thin:@localhost:1521:XE"
+			  driverClassName="oracle.jdbc.OracleDriver" 
+              type="javax.sql.DataSource"
+			  auth="Container" 
+              name="jdbc/oracle" />
+</Context>
+------------------------------------------------------
+
+
+5. 프로그램 설정 (JNDI 사용)
+
+//컴에서 C: (java:comp/env) 밑에있는 (->jdbc->oracle) jata.txt 찿아라 
+Context context = new InitialContext();
+context.lookup("java:comp/env/jdbc/oracle");
+​
+
+3. JNDI(Java Naming and Directory Interface) 
+- 서비스가 다른 서비스를 탐색할 때 유용하게 사용된다. (분산된 자원)
+- 분산된 자원 끼리의 탐색을 원할하게 하기 위한 type casting 임. (DNS 도 이에 속함) 
+- JNDI에 설정해 놓았다는것은 Context.xml에 리소스를 생성해놓은 것을 말한다.
+// 등록된 객체 = context.lookup("등록된 JNDI 이름");
+DataSource ds = (DataSource)context.lookup("java:comp/env/jdbc/mySpring"); 
+// 파일 시스템에서 루트의 역할을 하는 것이 c:\에서 부터 찾는 것처럼 실제 등록된 지원도
+// 루트의 역할을 하는 곳 부터 찾아야 하고 그 역할을 하는 것이 java:comp/env이다.
+// 파일 시스템 폴더명을 적을 때 c:\ 폴더명을 적는 것처럼 자원을 찾을 때에도 java:comp/env/JNDI 명으로 표현한다.
+
+----------------------
+
+​<!-- 
+Resource  커넥션풀을 만드는 기본 설정 (어떤DB , 계정을 가지고 접속 설정)
+<Resource
+auth="Container"  
+driverClassName="oracle.jdbc.driver.OracleDriver"
+maxTotal="20"  //커넥션 객체의 최대 갯수  (default 8)
+maxIdle="20"   //사용하지  않는 idle(대기)상태의 최대 수 
+maxActive="20"  //DataSource로부터 꺼낼 수 있는 커넥션 최대 개수 기본값 : 8개
+name="jdbc/myoracle"  // 사용자가 지정하는 임의의 이름 
+type="javax.sql.DataSource" 
+url="jdbc:oracle:thin:@127.0.0.1:1521:orcl"  //원격접속의 경우 반드시 @로 설정한다. 
+username="scott"   //연결한 db 사용자 이름
+password="tiger"   // 연결한 db의 비밀번호 
+/>
+
+​
+
+​
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+<!-- 
+maxActive : 최대 동시 대여 가능 커넥션수 
+maxIdle : 최소 보유 커넥션수 
+maxWait : 최대 대기 시간 -> 넘겼는데도 빈 커넥션이 없으면 Exception (1=5초, 180=15분) 
+removeAbandoned : (true) 대여시간 초과했는데 반납 안된 커넥션 처리 
+removeAbandonedTimeout : 대여시간 설정 ( 1=5초 60=5분 ) 
+logAbandoned : (true) 삭제시에 로그를 남길 것인가? 
+validationQuery : 커넥션이 살아 있는지 체크 하는 쿼리로 오라클의 경우에는 "select 1 from dual", MySQL의 경우에는 "select 1" 
+testWhileIdle : (true) 커넥션에 아무런 데이터 송수신이 없을 경우 테스트를 할지 여부를 결정합니다. 
+timeBetweenEvictionRunsMillis : 커넥션이 쉬고 있을 때 커넥션 체크 쿼리를 실행하는 시간 간격을 설정합니다. 밀리 세컨드로 설정하며, 저보통 60000(1분)을 줍니다. -->
+
+​
+
+​
+ 오라클 전용
+<Resource maxWait="-1" 
+maxIdle="20" 
+maxActive="10" 
+password="1004" 
+username="kglim" 
+url="jdbc:oracle:thin:@192.168.7.58:1521:XE"
+driverClassName="oracle.jdbc.OracleDriver" 
+type="javax.sql.DataSource"
+auth="Container" 
+name="jdbc/oracle" />
+
+
+마이sql전용
+<Resource maxWait="-1" 
+maxIdle="20" 
+maxActive="10" 
+password="1004"
+username="Myuser" 
+url="jdbc:mysql://192.168.7.227:3306/mydb"
+driverClassName="com.mysql.jdbc.Driver" 
+type="javax.sql.DataSource"
+auth="Container" 
+name="jdbc/mysql" />
+
+</Context>

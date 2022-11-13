@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>서버 파일 업로드(enctype 설정)</title>
+</head>
+<body>
+	<!-- 내가 보내는 데이터는  다양한 파일 양식으로 보내겠다는 의미-->
+	<form action="Ex02_upload.jsp" method="post" enctype="multipart/form-data">
+		write: <input type="text" name="name"><br>
+		title: <input type="text" name="title"><br>
+			   <input type="hidden" name="hid" value="hello"><br>
+		file1 : <input type="file" name="filename1"><br>	   
+		file2 : <input type="file" name="filename2"><br>
+				<textarea rows="10" cols="10" name="content"></textarea>
+				<input type="submit" value="파일 업로드">
+	</form>
+</body>
+</html>

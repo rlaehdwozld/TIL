@@ -1,0 +1,112 @@
+파일 업로드 와 다운로드
+​
+
+I/O : inputstream / outputstream
+​
+
+별도의 lib) 유료 , 무료 :cos.jar
+
+
+http://www.servlets.com/cos/ 사이트 에서 다운로드
+cos.jar 파일 lib 폴더에 붙여넣기
+
+
+
+cos 제공 : MultipartRequest 라는 class 파일 업로드 사용
+​
+
+*파일 업로드 1.enctype="multipart/form-data"
+ion="" method="" enctype="multipart/form-data">
+​
+
+*서버 일반적으로 : request 객체  > cos 제공 : MultipartRequest 통해서 ...
+
+​
+
+​
+
+1. 폴더 업로드 : upload
+
+​
+
+----------------------------------------------------------------------------
+
+​
+
+<!--
+
+cos.jar 에서 다중 파일 업로드를 지원하는 객체가 바로 >> MultipartRequest  >> request 객체를 넘겨준다
+
+***MultipartRequest 객체의 생성자**************************************************
+
+      MultipartRequest(
+
+          javax.servlet.http.HttpServletRequest request, 
+
+          java.lang.String saveDirectory,
+
+          int maxPostSize,
+
+          java.lang.String encoding,
+
+          FileRenamePolicy policy)
+
+    
+
+     request : MultipartRequest와 연결될 request객체를 의미한다. 
+
+     saveDirectiory : 서버측에 파일이 실질적으로 저당될 경로를 의미한다. 
+
+     maxPostSize : 한번에 업로드 할수있는 최대 파일 크기를 의미한다. 
+
+     encoding : 파일의 이름 인코딩 방식을 의미한다. 
+
+     policy : 파일이름 중복 처리를 위한 인자를 의미한다.  기본값 : 똑같은 파일 덮어쓰기
+
+    
+
+     ***MultipartRequest 객체의 메서드**************************************************
+
+     getParameterNames() :  폼에서 전송된 파라미터의 타임이 file이 아닌 이름들을 Enumeration 타입으로 리턴한다. 
+
+     getParameterValues() : 폼에서 전송된 파라미터 값들을 배열로 받아온다. 
+
+     getParameter() : Request객체에 있는 해당 파라미터의 값을 가져온다. 
+
+     getFileNames() : 파일을 여러개 업로드 할 경우 타입이 file인 파라미터 이름들을 Enumeration 타입으로 리턴한다. 
+
+     getFileSystemName() : 서버에 실제로 업로드 된 파일의 이름을 의미한다. 
+
+     getOriginalFileName() : 클라이언트가 업로드 한 파일의 원본 이름을 의미한다. 
+
+     getContentType() : 업로드 된 파일의 컨텐트 타입을 얻을때 사용한다. 
+
+     getFile() :  서버에 업로드 된 파일 객체 자체를 반환하는 메소드이다.
+
+​
+
+​
+
+​
+
+​
+
+​
+
+      가상경로(웹) : http://localhost:8090/Web_jsp_fileupload_14/upload/
+
+      물리적 경로(웹 서버 특정경로) :
+
+  1. D:\bitcamp104\WebJSP\JSPLab\WebServlet_92_FileUpload\WebContent\upload
+
+  2. 이클립스 톰켓 내장 : 실 배포 경로
+
+    실제 파일 저장 경로(아래 있는 경로)
+
+     D:\bitcamp104\WebJSP\JSPLab\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\WebServlet_92_FileUpload\upload
+
+​
+
+-->   
+
+​
